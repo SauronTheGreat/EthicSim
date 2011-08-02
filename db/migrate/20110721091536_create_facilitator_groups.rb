@@ -6,8 +6,10 @@ class CreateFacilitatorGroups < ActiveRecord::Migration
       t.integer :facilitator_id
 
       t.timestamps
-    end
+	end
+	FacilitatorGroup.create :client_id=>1,:name=>"Professors and Administrators"
   end
+
 
   def self.down
     drop_table :facilitator_groups

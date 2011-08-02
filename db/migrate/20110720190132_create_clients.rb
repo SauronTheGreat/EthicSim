@@ -5,8 +5,12 @@ class CreateClients < ActiveRecord::Migration
       t.string :type_of_client
 
       t.timestamps
-    end
+	end
+	#create a default client
+	Client.create(:name=>"Ptotem Learning Projects",:type_of_client=>"Owner")
   end
+
+
 
   def self.down
     drop_table :clients

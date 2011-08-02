@@ -11,6 +11,9 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.lockable :lock_strategy => :failed_attempts, :unlock_strategy => :both
       # t.token_authenticatable
 
+	  #Default user
+
+
 
       t.timestamps
     end
