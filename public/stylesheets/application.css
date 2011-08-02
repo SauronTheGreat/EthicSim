@@ -1,0 +1,90 @@
+html {
+    height: 74%;
+    text-align: center;
+}
+
+body {
+    margin:  auto;
+    background-color: #000000;
+    font-family: Verdana, Helvetica, Arial;
+    font-size: 14px;
+    width: 95%;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+a img {
+    border: none;
+}
+
+a {
+    color: #0000FF;
+    border:  none;
+}
+
+.clear {
+    clear: both;
+    height: 0;
+    overflow: hidden;
+}
+
+#flash_notice, #flash_error, #flash_alert {
+    padding: 5px 8px;
+    margin: 10px 0;
+}
+
+#flash_notice {
+
+    position:absolute;
+    right:50px;
+    top:50px;
+    width:25%;
+    height:20%;
+    border-radius: 5px;
+    border: #ff9900 4px solid;
+    padding: 10px;
+    background-position: center;
+    background-image: url(/images/success.png);
+    margin: 2px;
+    background-repeat: no-repeat;
+    background-color: #ffff99;
+    /*border: solid 1px #6C6;*/
+}
+
+#flash_error, #flash_alert {
+    background-color: #FCC;
+    border: solid 1px #C66;
+}
+
+.fieldWithErrors {
+    display: inline;
+}
+
+.error_messages {
+    width: 400px;
+    border: 2px solid #CF0000;
+    padding: 0px;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+    font-size: 12px;
+}
+
+.error_messages h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 10px;
+    font-size: 12px;
+    margin: 0;
+    background-color: #c00;
+    color: #fff;
+}
+
+.error_messages p {
+    margin: 8px 10px;
+}
+
+.error_messages ul {
+    margin: 0;
+}

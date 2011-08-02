@@ -1,0 +1,25 @@
+<%= form_for(@facilitator_input) do |f| %>
+  <% if @facilitator_input.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@facilitator_input.errors.count, "error") %> prohibited this facilitator_input from being saved:</h2>
+
+      <ul>
+      <% @facilitator_input.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+  </div>
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Questionnaire:</b>
+  <%= @questionnaire_setting.questionnaire_id %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @questionnaire_setting.category_id %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @questionnaire_setting.value %>
+</p>
+
+
+
+
+<% @questionnaire=Questionnaire.find(@questionnaire_setting.questionnaire_id) %>
+<td><%= link_to "Back",questionnaire_path(@questionnaire) %></td>
+

@@ -1,0 +1,45 @@
+<p id="notice"><%= flash[:notice] %></p>
+
+<h1><%= @student_group.name.titleize %></h1>
+<br/>
+
+
+<table style="width:90%; text-align: left;">
+  <tr>
+	<td><%= link_to image_tag('/images/student_management_off.png', :style=>"width:160px;height:160px;", :class=>'rollover', :title=>'Student Manager'), {:controller => :student_group_users, :action => 'new', :sgid=>@student_group.id} %></td>
+	<td><%= link_to image_tag('/images/quiz_icon_off.png', :style=>"width:150px;height:150px;", :class=>'rollover', :title=>'Assign Quiz'), questionnaire_selection_path(:sgid=>@student_group.id, :questionnaire=>"Quiz") %></td>
+	<td>
+	  <table>
+		<tr>
+		  <td><%= link_to image_tag('/images/pre-survey_off.png', :style=>"width:125px;height:78px;", :class=>'rollover', :title=>'Assign Pre-Survey'), questionnaire_selection_path(:sgid=>@student_group.id, :questionnaire=>"PreQuestionnaire") %></td>
+		</tr>
+		<tr>
+		  <td><%= link_to image_tag('/images/post-survey_off.png', :style=>"width:120px;height:75px;", :class=>'rollover', :title=>'Assign Post-Survey'), questionnaire_selection_path(:sgid=>@student_group.id, :questionnaire=>"PostQuestionnaire") %></td>
+		</tr>
+
+	  </table>
+
+	</td>
+	<td>
+	  <%= link_to "Settings",new_student_group_setting_path(:sgid=>@student_group.id) %>
+	</td>
+  </tr>
+
+  <% @student_group_user=StudentGroupUser.find_all_by_student_group_id(@student_group.id) %>
+  <% if @student_group_user.nil? %>
+  <h2 style="color: red">Please assign students</h2>
+	<% elsif @student_group.pre_questionnaire_id.nil? %>
+  <h2 style="color: red">Please assign Pre Questionnaire </h2>
+<% elsif @student_group.quiz_id.nil? %>
+  <h2 style="color: red">Please assign Quiz</h2>
+<% elsif @student_group.post_questionnaire_id.nil? %>
+  <h2 style="color: red">Please assign Post Questionnaire Id</h2>
+	<% else %>
+  <%= link_to "Proceed to game creation",new_game_path(:sgid=>@student_group.id) %>
+	<% end %>
+
+
+
+</table>
+<br/>
+<br/>

@@ -1,0 +1,29 @@
+<%= form_for(@questionnaire_setting) do |f| %>
+  <% if @questionnaire_setting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@questionnaire_setting.errors.count, "error") %> prohibited this questionnaire_setting from being saved:</h2>
+
+      <ul>
+      <% @questionnaire_setting.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+    <%= f.hidden_field :questionnaire_id ,:value=>params[:questionnaire_id].to_i%>
+
+  <div class="field">
+    <%= f.label :category_id %><br />
+    <%= f.select :category_id,Category.all.map{|category|[category.name,category.id]} %>
+  </div>
+  <div class="field">
+    <%= f.label :value %><br />
+    <%= f.text_field :value %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Save Settings" %>
+  </div>
+<% end %>

@@ -1,0 +1,25 @@
+<h1>Listing student_group_questionnaires</h1>
+
+<table>
+  <tr>
+    <th>Questionnaire</th>
+    <th>Student group</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @student_group_questionnaires.each do |student_group_questionnaire| %>
+  <tr>
+    <td><%= student_group_questionnaire.questionnaire_id %></td>
+    <td><%= student_group_questionnaire.student_group_id %></td>
+    <td><%= link_to 'Show', student_group_questionnaire %></td>
+    <td><%= link_to 'Edit', edit_student_group_questionnaire_path(student_group_questionnaire) %></td>
+    <td><%= link_to 'Destroy', student_group_questionnaire, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Student group questionnaire', new_student_group_questionnaire_path %>

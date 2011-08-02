@@ -1,0 +1,51 @@
+<h2>Questions for <%= @questionnaire.name %> </h2>
+
+<div style="max-height:75%;overflow: auto;">
+  <ol>
+	<% @questions.each do |question| %>
+	  <li style="float: left;">
+		<b> <%= question.statement+" ( "+question.type.name+ ")" %></b></li>
+	  <br>
+
+	  <% if question.type.name=="Open-End" %>
+		<%= text_area_tag :disabled=>true %>
+
+	  <% end %>
+
+	  <% if question.options.count > 0 %>
+		<% if question.options.count <= 4 %>
+
+		  <% question.options.each do |option| %>
+			<ul>
+			  <li style="float: left;"><%= option.name %></li>
+			  <br>
+
+			</ul>
+		  <% end %>
+		<% else %>
+		  <!--To handle matrix-->
+
+		  <table border="1">
+			<tr>
+			  <% question.options.each_with_index do |option, index| %>
+
+				<td><%= option.name %></td>
+				<% if (index+1) % 5 == 0 %>
+
+				  </tr>
+				<% end %>
+
+
+			  <% end %>
+			  </table>
+		<% end %>
+
+	  <% else %>
+		<p>(No Options Added Yet)</p>
+	  <% end %>
+
+	<% end %>
+
+  </ol>
+  <%= link_to "Use This !", use_questionnaire_path(:sgid=>params[:sgid], :questionnaire_id=>@questionnaire.id, :questionnaire=>params[:questionnaire]) %>
+</div>

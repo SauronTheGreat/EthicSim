@@ -1,0 +1,22 @@
+
+
+
+
+<% if params[:questionnaire]=="PreQuestionnaire" %>
+  <h1>Pre Quiz Survey</h1>
+<% elsif params[:questionnaire]=="Quiz" %>
+  <h1> Quiz </h1>
+<% else %>
+  <h1> Post Quiz Survey </h1>
+<% end %>
+
+
+<div id="UpdatedClock">
+
+
+</div>
+
+
+<%= render 'form' %>
+
+

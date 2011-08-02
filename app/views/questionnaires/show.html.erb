@@ -1,0 +1,31 @@
+<p id="notice"><%= flash[:notice] %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @questionnaire.name %>
+</p>
+
+<p>
+  <b>Facilitator:</b>
+  <%= User.find(@questionnaire.user_id).full_name %>
+</p>
+
+
+
+
+
+
+
+<%= link_to 'Add a question', :controller => :questions, :action => 'selection_for_question', :questionnaire_id=>@questionnaire.id %>|
+<%= link_to 'Show all questions', :controller => :questions, :action => 'index', :my_questionnaire_id=>@questionnaire.id %>|
+<% if (QuestionnaireSetting.find_by_questionnaire_id(@questionnaire.id)).nil? %>
+  <%= link_to 'Add Settings', new_questionnaire_setting_path(:questionnaire_id=>@questionnaire.id) %>
+<% else %>
+  <%= link_to 'View Settings', questionnaire_settings_path(:questionnaire_id=>@questionnaire.id) %>
+<% end %>
+
+<% if !params[:sgid].nil? %>
+  <%= link_to 'Use it !', use_questionnaire_path(:sgid=>params[:sgid], :questionnaire=>params[:questionnaire], :questionnaire_id=>@questionnaire.id) %>
+<% end %>
+
+

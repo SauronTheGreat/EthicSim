@@ -1,0 +1,21 @@
+<%= form_for(@facilitator) do |f| %>
+  <% if @facilitator.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@facilitator.errors.count, "error") %> prohibited this facilitator from being saved:</h2>
+
+      <ul>
+      <% @facilitator.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <%= f.hidden_field :facilitator_group_id,:value=>params[:fgid].to_i %>
+  <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.select "user_id",User.all.collect{|u| [u.first_name+ " "+u.last_name,u.id ]} %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

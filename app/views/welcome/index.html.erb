@@ -1,0 +1,73 @@
+<% if !current_user.admin && !current_user.educator %>
+    <div id="instruction_container">
+      <table>
+        <tr>
+          <td>
+            <%= h simple_format(@welcome_student) %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+			<% @player=Player.find_by_user_id(current_user.id) %>
+			<% if !@player.nil? %>
+			<%= link_to "proceed >>> ",new_player_answer_path(:questionnaire=>"PreQuestionnaire") ,:class=>'large_button' %>
+			  <% else %>
+			<p>No Games Assigned yet !!</p>
+			<% end %>
+
+          </td>
+        </tr>
+      </table>
+    </div>
+<% elsif current_user.educator %>
+    <div id="instruction_container">
+      <table>
+        <tr>
+          <td>
+            <%= h simple_format(@welcome_educator) %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= link_to image_tag('/images/menu/next_off.png', :style=>"width:75px;height:75px;",:class=>'rollover', :title=>'On to Bulk User Importer'),bulk_user_import_path %>
+          </td>
+        </tr>
+      </table>
+    </div>
+<% end %>
+
+<!--<% if current_user %>-->
+    <!--<% if current_user.educator %>-->
+
+
+
+
+
+
+
+    <!--<% elsif current_user.admin %>-->
+        <!--this is admin view-->
+        <!--<%= link_to "Add User", new_user_registration_path %>-->
+        <!--<%= link_to "Add Client", new_client_path %>-->
+        <%= link_to "Add A facilitator Group", new_facilitator_group_path %> <br>
+        <%= link_to "View all facilitator Groups", facilitator_groups_path %> <br>
+
+
+
+
+
+    <!--<% else %>-->
+        <!--this is student view-->
+
+
+
+        <!--<%= link_to "proceed >>> ", :controller => :player_answers, :action => 'new', :questionnaire=>"PreQuestionnaire" %>-->
+    <!--<% end %>-->
+<!--<% end %>-->
+
+
+
+
+
+
+

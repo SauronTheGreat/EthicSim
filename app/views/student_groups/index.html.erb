@@ -1,0 +1,21 @@
+<table width="85%" style="margin: auto">
+<tr>
+  <td><h1>Your Groups</h1></td>
+  <td width="10%"></td>
+  <td colspan="3" ><%= link_to image_tag('/images/add_user_off.png', :style=>"width:50px;height:50px;",:class=>'rollover', :title=>'New Group'), new_student_group_path %></td>
+</tr>
+<% @student_groups.each do |student_group| %>
+  <tr>
+    <td style="text-align: left;border: solid 1px #000000"><%= student_group.name.titleize %></td>
+    <td width="10%"></td>
+    <td class="blacky"><%= link_to image_tag('/images/menu/settings_icon_off.png', :style=>"width:50px;height:50px;",:class=>'rollover', :title=>'Manage'), student_group %></td>
+    <td class="blacky"><%= link_to image_tag('/images/menu/rename_icon_off.png', :style=>"width:40px;height:40px;",:class=>'rollover', :title=>'Rename'), edit_student_group_path(student_group) %></td>
+    <td class="blacky"><%= link_to image_tag('/images/menu/delete-icon_off.png', :style=>"width:45px;height:45px;",:class=>'rollover', :title=>'Delete'), student_group, :confirm => 'Are you sure?', :method => :delete %></td>
+
+  </tr>
+<% end %>
+</table>
+<br/>
+<br/>
+
+

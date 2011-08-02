@@ -1,0 +1,117 @@
+.single_large_container {
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    background-color: #FFF;
+    padding: 2% 2%;
+    border: solid 1px black;
+    border-radius: 15px;
+    margin-top: 3%;
+    /*text-align: left;*/
+}
+
+.empty_single_large_container {
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    background-color: transparent;
+    padding: 2% 2%;
+    border: none;
+    margin-top: 3%;
+    /*text-align: left;*/
+}
+
+.header_banner_container {
+    width: 90%;
+    height: 6%;
+    margin: 0 auto;
+    background-color: #FFF;
+    border-radius: 5px;
+    padding: 2% 2%;
+    border: solid 1px black;
+    margin-top: 20px;
+}
+
+.left_bar {
+    width: 10%;
+    height: 98%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #333333;
+    border-radius: 0px 5px 5px 0px;
+    border: solid 1px black;
+    vertical-align: top;
+    padding-top: 1%;
+    text-align: center;
+}
+
+.left_bar_remainder_empty {
+    width: 90%;
+    height: 98%;
+    position: absolute;
+    left: 10%;
+    top: 0px;
+    background-color: transparent;
+    vertical-align: top;
+    padding-top: 1%;
+    text-align: center;
+}
+
+.small_side_container {
+    width: 35%;
+    position: absolute;
+    right: 5%;
+    top: 8%;
+    border-radius: 5px;
+    background-color: white;
+    vertical-align: top;
+    padding-top: 1%;
+    text-align: center;
+}
+
+#login_container {
+    width: 50%;
+    margin: 0 auto;
+    background-color: #FFF;
+    border-radius: 5px;
+    padding: 2% 2% 2% 2%;
+    border: solid 1px black;
+    margin-top: 18%;
+    text-align: center;
+}
+
+#login_container {
+    width: 50%;
+    margin: 0 auto;
+    background-color: #FFF;
+    border-radius: 5px;
+    padding: 2% 2% 2% 2%;
+    border: solid 1px black;
+    margin-top: 18%;
+    text-align: center;
+}
+
+#instruction_container {
+    width: 50%;
+    position: absolute;
+    left: 5%;
+    top: 8%;
+    background-color: #FFF;
+    border-radius: 5px;
+    padding: 3% 3% 3% 3%;
+    border: solid 1px black;
+    text-align: center;
+}
+
+.free_floater {
+    width: 50%;
+    position: absolute;
+    left: 5%;
+    top: 8%;
+    background-color: #FFF;
+    border-radius: 5px;
+    padding: 2% 2% 2% 2%;
+    border: solid 1px black;
+    text-align: center;
+}

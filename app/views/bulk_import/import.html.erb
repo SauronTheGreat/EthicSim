@@ -1,0 +1,28 @@
+<div style="text-align: center;"><h1>Bulk User Import</h1></div>
+Please upload an Excel file that contains student data. The expected format is:
+<br/>
+<br/>
+<table>
+  <tr>
+    <td style="border: solid">First Name</td>
+    <td style="border: solid">Last Name</td>
+    <td style="border: solid">Email</td>
+    <td style="border: solid">Initial Password</td>
+  </tr>
+</table>
+<br/>
+<br/>
+
+
+<%= form_tag({:action => 'pick_data'},:multipart => true) do %>
+
+Select File :
+<%= file_field 'upload', 'datafile' %>
+
+<%= submit_tag "Upload" %>
+
+<% end %>
+<br/>
+<br/>
+
+

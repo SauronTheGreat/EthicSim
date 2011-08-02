@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  statement: MyString
+  answer: 1
+  questionnaire_id: 1
+  type_id: 1
+  category_id: 1
+
+two:
+  statement: MyString
+  answer: 1
+  questionnaire_id: 1
+  type_id: 1
+  category_id: 1

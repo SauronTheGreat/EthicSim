@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
+  <%= stylesheet_link_tag :all, :recursive=>true, :media=>"screen", :cache=>true %>
+  <%= javascript_include_tag :all %>
+  <%= csrf_meta_tag %>
+  <link rel="icon" href="/favicon.ico" type="image/ico"/>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/ico"/>
+
+  <script type="text/javascript">
+
+      /* IMAGE ROLLOVER SCRIPT */
+
+      // Preload the images for speed
+      <% if current_user.educator%>
+      $.preloadImages('/images/menu/home_icon_on.png');
+      $.preloadImages('/images/menu/design_icon_on.png');
+      $.preloadImages('/images/menu/import_icon_on.png');
+      $.preloadImages('/images/menu/group_icon_on.png');
+      <% end %>
+
+      // Set up rollover
+      $(
+              function() {
+                  $("img.rollover").tooltip({
+                      delay: 0,
+                      showURL:false
+                  });
+                  $("img.rollover").hover(
+                          function() {
+                              this.src = this.src.replace("_off", "_on");
+                          },
+                          function() {
+                              this.src = this.src.replace("_on", "_off");
+                          }
+                  );
+              }
+      )
+
+  </script>
+
+  <%= yield(:head) %>
+</head>
+<body>
+<img src='/images/menu/homer-brain.jpg' style="position:absolute;right:0;bottom:20px"/>
+
+<div class="left_bar">
+  <table style="width: 100%; height: 100%">
+    <tr style="height: 90%">
+      <td style="vertical-align: top;">
+        <%= render 'layouts/partials/left_bar_menu' %>
+        <%= yield(:left_bar) %>
+      </td>
+    </tr>
+    <tr style="vertical-align: bottom;height: 10%">
+      <td style="vertical-align: bottom;">
+        <%= link_to destroy_user_session_path, :method => 'delete' do %>
+            <img class="rollover" id="logout_button" src='/images/menu/logout_off.png' style="width:90px;height:40px;" title="Log Out">
+        <% end %>
+      </td>
+    </tr>
+  </table>
+
+</div>
+
+<div class="left_bar_remainder_empty">
+
+  <% flash.each do |name, msg| %>
+      <%= content_tag :div, msg, :id => "flash_#{name}" %>
+  <% end %>
+  <%= content_tag :h1, yield(:title) if show_title? %>
+  <%= yield(:instructions) %>
+    <%= yield %>
+
+</div>
+</body>
+</html>

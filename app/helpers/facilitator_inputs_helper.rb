@@ -1,0 +1,2 @@
+module FacilitatorInputsHelper
+end

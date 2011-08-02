@@ -1,0 +1,20 @@
+<%= form_tag :action => 'create' %>
+
+
+
+ <% @student_group_users.each_with_index do |sgu, index| %>
+
+
+ <%= fields_for "student_group_users[#{index}]", sgu do |f| %>
+
+   <%= f.hidden_field :student_group_id, :value=>params[:sgid].to_i %>
+
+
+
+ <%=@users[index].first_name + " "+@users[index].last_name%> <%= f.check_box :user_id,{:checked=>false},"#{@users[index].id}","" %>
+          <br> <br> <br>
+
+ <% end %>
+ <% end %>
+<%= submit_tag %>
+

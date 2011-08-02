@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @option.name %>
+</p>
+
+<p>
+  <b>Question:</b>
+  <%= @option.question_id %>
+</p>
+
+
+
+<%= link_to 'Back', question_path(Question.find(@option.question_id)) %>

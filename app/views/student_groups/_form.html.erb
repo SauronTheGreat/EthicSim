@@ -1,0 +1,30 @@
+<%= form_for(@student_group) do |f| %>
+    <% if @student_group.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@student_group.errors.count, "error") %> prohibited this student_group from being
+            saved:</h2>
+
+          <ul>
+            <% @student_group.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <table>
+      <tr>
+        <td><%= f.submit %></td>
+        <td>named</td>
+        <td><%= f.text_field :name %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>within</td>
+        <% @my_fac_id=Facilitator.first(:conditions => ['user_id=?',current_user.id]) %>
+        <td><%= f.select :facilitator_group_id, FacilitatorGroup.all(:conditions => ['facilitator_id=?',@my_fac_id]).map { |fg| [fg.name, fg.id] } %> </td>
+      </tr>
+    </table>
+    <br/>
+
+<% end %>

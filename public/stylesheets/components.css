@@ -1,0 +1,68 @@
+/* Table Designs */
+
+/* Standard Table */
+
+table {
+    border-collapse: collapse;
+    padding: 2px;
+    margin: auto;
+}
+th {
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    padding: 5px;
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 5px;
+}
+
+
+
+table.pretty {
+    border-collapse: collapse;
+    padding: 2px;
+    margin: auto;
+}
+
+td.pretty {
+    text-align: center;
+    vertical-align: middle;
+    padding: 5px;
+    background-image: url('/images/back-texture.jpg');
+    color: #ffffff;
+}
+
+td.blacky {
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    /*background-color: #ccccff;;*/
+    color: #ffffff;
+    /*border: 1px solid #000000*/
+}
+
+/* Buttons */
+input.full_area_button {
+    font-size: 14px;
+    width: 95%;
+    height: 95%;
+}
+
+input.large_button {
+    font-size: 16px;
+    width: 120px;
+    height: 60px;
+}
+
+input.large_wide_button {
+    font-size: 16px;
+    width: 100%;
+    height: 60px;
+}

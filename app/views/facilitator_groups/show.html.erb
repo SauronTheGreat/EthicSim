@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Client:</b>
+  <%= @facilitator_group.client_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @facilitator_group.name %>
+</p>
+
+
+
+<p>
+  <b>Facilitator Name</b>
+  <% if @facilitator_group.facilitator_id.nil? %>
+		  <td style="color: red">No Facilitator added yet</td>
+		<% else %>
+		  <% if !Facilitator.find_by_facilitator_group_id(@facilitator_group.id).nil? %>
+			<td><%= User.find(Facilitator.find_by_facilitator_group_id(@facilitator_group.id).user_id).full_name %></td>
+
+		  <% else %>
+			<td>Not Available</td>
+		  <% end %>
+		  <% flag=1 %>
+
+		<% end %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_facilitator_group_path(@facilitator_group) %> |
+<% if current_user.admin %>
+<%= link_to 'Back to clients' , :controller => :clients ,:action => 'index'%>|
+<% else %>
+<%= link_to 'Back to Index' , facilitator_groups_path %>|
+<% end %>
+
+   <% flag=0 %>
+
+
+
+		<% if flag==0 %>
+		  <td><%= link_to "Add facilitator", :controller => :facilitators, :action => 'new', :fgid=>@facilitator_group.id %></td>|
+		  <% flag=0 %>
+		<% else %>
+		  <td><%= link_to "Change facilitator", :controller => :facilitators, :action => 'new', :fgid=>@facilitator_group.id %></td>|
+		  <% flag=0 %>
+		<% end %>
+		<td><%= link_to 'Add new student group', :controller => :student_groups, :action => 'new', :fgid=>@facilitator_group.id %></td>|
+		<td><%= link_to 'Show all student groups', student_groups_path, :fgid=>@facilitator_group.id %></td>|
+
+

@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  player_id: 1
+  question_id: 1
+  answer: 1
+  answer_after_self_scoring: 1
+
+two:
+  player_id: 1
+  question_id: 1
+  answer: 1
+  answer_after_self_scoring: 1

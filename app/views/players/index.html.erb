@@ -1,0 +1,28 @@
+<p id="notice"><%= params[:notice] %></p>
+
+<h1>Listing players</h1>
+
+<table>
+  <tr>
+    <th>Game</th>
+    <th>Student group user</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @players.each do |player| %>
+  <tr>
+    <td><%= player.game_id %></td>
+    <td><%= player.student_group_user_id %></td>
+    <td><%= link_to 'Show', player %></td>
+    <td><%= link_to 'Edit', edit_player_path(player) %></td>
+    <td><%= link_to 'Destroy', player, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to "Add Answers",:controller => :player_answers,:action => 'new',:pid=>player.id %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Player', new_player_path %>

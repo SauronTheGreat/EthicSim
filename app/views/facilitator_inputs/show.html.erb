@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Location:</b>
+  <%= @facilitator_input.location %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @facilitator_input.body %>
+</p>
+
+
+<%= link_to 'Edit', edit_facilitator_input_path(@facilitator_input) %> |
+<%= link_to 'Back', facilitator_inputs_path %>

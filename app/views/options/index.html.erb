@@ -1,0 +1,45 @@
+
+
+
+<p style="text-align: left;">
+<b>Options for :</b>
+<%= @question.statement %>
+</p>
+<br>
+<table width="85%" style="margin: auto">
+
+<% @options.each_with_index do |option,index| %>
+  <tr>
+
+    <td style="text-align: left;border: solid 1px #000000"><%= option.name.titleize %></td>
+
+
+    <td width="10%"></td>
+
+    <td class="blacky"><%= link_to image_tag('/images/menu/rename_icon_off.png', :style=>"width:40px;height:40px;",:class=>'rollover', :title=>'Rename'), edit_option_path(option) %></td>
+    <td class="blacky"><%= link_to image_tag('/images/menu/delete-icon_off.png', :style=>"width:45px;height:45px;",:class=>'rollover', :title=>'Delete'), option, :confirm => 'Are you sure?', :method => :delete %></td>
+
+  </tr>
+<% end %>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

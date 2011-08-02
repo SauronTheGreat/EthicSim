@@ -1,0 +1,25 @@
+<%= form_for(@student_group_setting) do |f| %>
+  <% if @student_group_setting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@student_group_setting.errors.count, "error") %> prohibited this student_group_setting from being saved:</h2>
+
+      <ul>
+      <% @student_group_setting.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+
+    <%= f.hidden_field :student_group_id,:value=>params[:sgid].to_i %>
+  </div>
+  <div class="field">
+    <%= f.label "Time for which a question appears " %><br />
+    <%= f.text_field :time_value %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
