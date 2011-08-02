@@ -37,7 +37,7 @@ class PlayerAnswersController < ApplicationController
 
 	count=@questionnaire.questions.count
 	@questions=@questionnaire.questions
-	if TempQuestion.all.count==0 && params[:time_out].nil?
+	if TempQuestion.all.count==0 && params[:time_out].nil? && params[:questionnaire]!="Closing"
 	  @questions.each do |question|
 		@temp_question=TempQuestion.new
 		@temp_question.question_id=question.id
@@ -53,16 +53,22 @@ class PlayerAnswersController < ApplicationController
 	  @player_answer.answer=0
 	  @player_answer.answer_after_self_scoring=0
 	  @player_answer.save
-	   TempQuestion.destroy(:first)
-	  end
-
-	if(params[:questionnaire]=="PreQuestionnaire")
-	  @next_call="Quiz"
-	elsif params[:questionnaire]=="Quiz"
-	  @next_call=="PostQuestionnaire"
+	  TempQuestion.destroy(:first)
 	end
-	if(TempQuestion.all.count==0)
-	  redirect_to new_player_answer_path(:questionnaire=>@next_call) and return
+
+	#if(params[:questionnaire]=="PreQuestionnaire")
+	#  @next_call="Quiz"
+	#elsif params[:questionnaire]=="Quiz"
+	#  @next_call=="PostQuestionnaire"
+	#end
+	if  !params[:time_out].nil?
+
+	if TempQuestion.all.count > 0
+	  redirect_to new_player_answer_path(:questionnaire=>"Quiz") and return
+	else
+	  redirect_to messaging_display_path(:questionnaire=>"PostQuestionnaire") and return
+
+	end
 	end
 
 	@player_answer = PlayerAnswer.new
@@ -115,14 +121,14 @@ class PlayerAnswersController < ApplicationController
 		  if @next_call=="PreQuestionnaire"
 			@next_call="Quiz"
 		  elsif @next_call=="Quiz"
-			  @next_call="PostQuestionnaire"
-			elsif @next_call=="PostQuestionnaire"
-			  format.html { redirect_to root_path }
-			  format.xml { render :xml => @player_answer, :status => :created, :location => @player_answer }
-			end
+			@next_call="PostQuestionnaire"
+		  elsif @next_call=="PostQuestionnaire"
+			format.html { redirect_to messaging_display_path(:questionnaire=>"Closing") }
+			format.xml { render :xml => @player_answer, :status => :created, :location => @player_answer }
+		  end
 
 
-		  format.html { redirect_to :controller => :player_answers, :action => 'new', :questionnaire=>@next_call }
+		  format.html { redirect_to messaging_display_path(:questionnaire=>@next_call) }
 		  format.xml { render :xml => @player_answer, :status => :created, :location => @player_answer }
 		else
 		  if TempQuestion.first.statement=="PreQuestionnaire"

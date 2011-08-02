@@ -1,16 +1,19 @@
+<% if params[:questionnaire]=="Quiz" %>
 <script type="text/javascript">
   $(document).ready(function()
 	{
 	  var i=0;
 
-	  var h=setInterval(rushabh,1000);
-	  function rushabh()
+	  var h=setInterval(timer_update,1000);
+	  function timer_update()
 	  {
 		$("#UpdatedClock").text("Time "+i++);
 		var end= "<%=@student_group_setting.time_value %>";
+		//var end=30;
 		if(i==end)
 		{
 		//alert("Redirecting.vgddv..!")  ;
+
 		  window.location.replace("<%= new_player_answer_path(:time_out=>"True",:questionnaire=>params[:questionnaire]) %>");
 
 
@@ -21,6 +24,7 @@
 	});
 </script>
 
+  <% end %>
 
 <%= form_for @player_answer do |f| %>
   <% @question=Question.find(TempQuestion.first.question_id) %>

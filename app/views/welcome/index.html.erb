@@ -10,6 +10,12 @@
           <td>
 			<% @player=Player.find_by_user_id(current_user.id) %>
 			<% if !@player.nil? %>
+			  <%  @student_group=StudentGroup.find_by_facilitator_group_id(current_user.facilitator_group_id)%>
+			  <% if !FacilitatorInput.find(:all,:conditions => ['student_group_id = ? and location = ?',@student_group.id,"instr_pre_quiz"]).nil? %>
+				<%= FacilitatorInput.find(:first,:conditions => ['student_group_id = ? and location = ?',@student_group.id,"instr_pre_quiz"]).body %>
+				<br>
+				<% end %>
+
 			<%= link_to "proceed >>> ",new_player_answer_path(:questionnaire=>"PreQuestionnaire") ,:class=>'large_button' %>
 			  <% else %>
 			<p>No Games Assigned yet !!</p>

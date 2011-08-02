@@ -1,0 +1,7 @@
+<%= h simple_format(@message) %>
+
+<% if params[:questionnaire]!="Closing" %>
+<%= link_to "Proceed",:controller => :player_answers, :action => 'new', :questionnaire=>params[:questionnaire] %>
+<% else %>
+<%= link_to "Thank You",root_path %>
+<% end %>

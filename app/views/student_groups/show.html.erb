@@ -23,6 +23,9 @@
 	<td>
 	  <%= link_to "Settings",new_student_group_setting_path(:sgid=>@student_group.id) %>
 	</td>
+	<td>
+	  <%= link_to "Messaging Manager",:controller=>:display_messaging,:action=>'show_modes',:sgid=>@student_group.id   %>
+	</td>
   </tr>
 
   <% @student_group_user=StudentGroupUser.find_all_by_student_group_id(@student_group.id) %>

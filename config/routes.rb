@@ -5,6 +5,9 @@ Simulation::Application.routes.draw do
   match 'bulk_user_import'=>'bulk_import#import'
   match 'import_complete'=>'bulk_import#pick_data'
   match 'all_users'=>'application#all_users'
+  match 'messaging_modes'=>'display_messaging#show_modes'
+  match 'messaging_display'=>'display_messaging#show_messages'
+
 
   resources :facilitator_inputs
 

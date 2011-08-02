@@ -44,7 +44,8 @@ class FacilitatorInputsController < ApplicationController
 
     respond_to do |format|
       if @facilitator_input.save
-        format.html { redirect_to(@facilitator_input, :notice => 'Facilitator input was successfully created.') }
+       # format.html { redirect_to(@facilitator_input, :notice => 'Facilitator input was successfully created.') }
+		 format.html { redirect_to(:controller=>:student_groups,:action=>'show',:id=>@facilitator_input.student_group_id, :notice => 'Facilitator input was successfully created.') }
         format.xml  { render :xml => @facilitator_input, :status => :created, :location => @facilitator_input }
       else
         format.html { render :action => "new" }
