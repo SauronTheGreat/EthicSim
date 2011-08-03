@@ -1,35 +1,32 @@
 <% if params[:questionnaire]=="Quiz" %>
-<script type="text/javascript">
-  $(document).ready(function()
-	{
-	  var i=0;
+  <script type="text/javascript">
+	$(document).ready(function() {
+	  var i = 0;
 
-	  var h=setInterval(timer_update,1000);
-	  function timer_update()
-	  {
-		$("#UpdatedClock").text("Time "+i++);
-		<% if !@student_group_setting.nil? %>
+	  var h = setInterval(timer_update, 1000);
 
-		var end= "<%=@student_group_setting.time_value %>";
-		<%	else %>
-		var end=30;
-		<% end %>
+	  function timer_update() {
+		$("#UpdatedClock").text("Time " + i++);
+	  <% if !@student_group_setting.nil? %>
 
-		if(i==end)
-		{
-		//alert("Redirecting.vgddv..!")  ;
+		var end = "<%=@student_group_setting.time_value %>";
+	  <%	else %>
+		var end = 30;
+	  <% end %>
+
+		if (i == end) {
+		  //alert("Redirecting.vgddv..!")  ;
 
 		  window.location.replace("<%= new_player_answer_path(:time_out=>"True",:questionnaire=>params[:questionnaire]) %>");
 
 
-
-		clearInterval(h);
+		  clearInterval(h);
 		}
 	  }
 	});
-</script>
+  </script>
 
-  <% end %>
+<% end %>
 
 <%= form_for @player_answer do |f| %>
 
@@ -46,46 +43,45 @@
   <%= f.hidden_field :answer_after_self_scoring, :value=>0 %>
   <%= f.hidden_field :question_id, :value=>@question.id %>
 
-	<ul>
+  <ul>
 
-	  <br>
+	<br>
 
 
-	  <% if @question.type.name=="Open Ended Question" %>
-		<%= f.text_area :answer %>	<br>
+	<% if @question.type.name=="Open Ended Question" %>
+	  <%= f.text_area :answer %>	<br>
+	<% else %>
+	  <% if @question.options.count == 0 %>
+		<%= f.hidden_field :answer, :value=>0 %>
 	  <% else %>
-		<% if @question.options.count == 0 %>
-		  <%= f.hidden_field:answer, :value=>0 %>
-		<% else %>
 
-		  <% if @question.options.count == 25 %>
-			<table>
-			  <tr>
-				<% @question.options.each_with_index do |option, i| %>
-				  <td><%= check_box_tag "check_box_#{i+1}", option.name %>	   <%= option.name %></td>
-				  <br>
-				  <% if (i+1) % 5 == 0 %>
+		<% if @question.options.count == 25 %>
+		  <table id="hover_checked">
+			<tr>
+			  <% @question.options.each_with_index do |option, i| %>
+				<td><%= check_box_tag "check_box_#{i+1}", option.name %>	   <%= option.name %></td>
+				<br>
+				<% if (i+1) % 5 == 0 %>
 
-					</tr>
-				  <% end %>
+				  </tr>
 				<% end %>
-				</table>
-		  <% else %>
-			<% @question.options.each do |option| %>
-			  <p style="text-align: left;"><%= f.radio_button :answer, option.option_number %>	   <%= option.name %> </p>
-			  <br>
-			<% end %>
-
-
+			  <% end %>
+			  </table>
+		<% else %>
+		  <% @question.options.each do |option| %>
+			<p style="text-align: left;"><%= f.radio_button :answer, option.option_number %>	   <%= option.name %> </p>
+			<br>
 		  <% end %>
 
-		  </ul>
 
+		<% end %>
+
+		</ul>
 
 
 	  <% end %>
 
-<% end %>
-  <%= f.submit "Next" %>
+	<% end %>
+	<%= f.submit "Next" %>
 
 <% end %>

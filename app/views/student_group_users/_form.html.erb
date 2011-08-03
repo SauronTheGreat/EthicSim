@@ -16,7 +16,7 @@
 
 		  <% @state=true %>
 		<% end %>
-		<td style="text-align: left;"><b><%= @users[index].first_name + " "+@users[index].last_name %><b></td>
+		<td style="text-align: left;"><b><%= @users[index].first_name + " "+@users[index].last_name %></b></td>
 		<td> <%= f.check_box :user_id, {:checked=>@state}, "#{@users[index].id}", "" %></td>
 
 	  <% end %>
