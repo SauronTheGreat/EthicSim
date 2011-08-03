@@ -8,8 +8,13 @@
 	  function timer_update()
 	  {
 		$("#UpdatedClock").text("Time "+i++);
+		<% if !@student_group_setting.nil? %>
+
 		var end= "<%=@student_group_setting.time_value %>";
-		//var end=30;
+		<%	else %>
+		var end=30;
+		<% end %>
+
 		if(i==end)
 		{
 		//alert("Redirecting.vgddv..!")  ;
@@ -27,6 +32,13 @@
   <% end %>
 
 <%= form_for @player_answer do |f| %>
+
+  <%= params[:alert] %>
+
+
+
+
+
   <% @question=Question.find(TempQuestion.first.question_id) %>
   <p style="text-align: left;"><b><%= @question.statement %></b></p>
   <%= f.hidden_field :player_id, :value=>Player.find_by_user_id(current_user.id).id %>
@@ -39,7 +51,7 @@
 	  <br>
 
 
-	  <% if @question.type.name=="Open-End" %>
+	  <% if @question.type.name=="Open Ended Question" %>
 		<%= f.text_area :answer %>	<br>
 	  <% else %>
 		<% if @question.options.count == 0 %>

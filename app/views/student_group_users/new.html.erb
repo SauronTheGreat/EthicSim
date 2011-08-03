@@ -1,5 +1,5 @@
-<h1>New student_group_user</h1>
+<h1>Student List for <u><%= StudentGroup.find(params[:sgid]).name %></u></h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Back', student_group_users_path %>
+

@@ -7,8 +7,8 @@
 		<b> <%= question.statement+" ( "+question.type.name+ ")" %></b></li>
 	  <br>
 
-	  <% if question.type.name=="Open-End" %>
-		<%= text_area_tag :disabled=>true %>
+	  <% if question.type.name=="Open Ended Question" %>
+		<p><%= text_area_tag :disabled=>true %></p>
 
 	  <% end %>
 
@@ -41,7 +41,10 @@
 		<% end %>
 
 	  <% else %>
+		<% if question.type.name !="Open Ended Question" %>
+
 		<p>(No Options Added Yet)</p>
+		  <% end %>
 	  <% end %>
 
 	<% end %>

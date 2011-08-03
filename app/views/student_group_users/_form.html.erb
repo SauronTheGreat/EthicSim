@@ -1,20 +1,34 @@
-<%= form_tag :action => 'create' %>
+<%= form_tag :action => 'create', :sgid=>params[:sgid] %>
+
+<table>
+  <tr>
 
 
-
- <% @student_group_users.each_with_index do |sgu, index| %>
-
-
- <%= fields_for "student_group_users[#{index}]", sgu do |f| %>
-
-   <%= f.hidden_field :student_group_id, :value=>params[:sgid].to_i %>
+	<% @student_group_users.each_with_index do |sgu, index| %>
 
 
+	  <%= fields_for "student_group_users[#{index}]", sgu do |f| %>
+		<%= f.hidden_field :student_group_id, :value=>params[:sgid].to_i %>
 
- <%=@users[index].first_name + " "+@users[index].last_name%> <%= f.check_box :user_id,{:checked=>false},"#{@users[index].id}","" %>
-          <br> <br> <br>
+		<% if StudentGroupUser.find_by_user_id(@users[index].id).nil? %>
+		  <% @state=false %>
+		<% else %>
 
- <% end %>
- <% end %>
+		  <% @state=true %>
+		<% end %>
+		<td style="text-align: left;"><b><%= @users[index].first_name + " "+@users[index].last_name %><b></td>
+		<td> <%= f.check_box :user_id, {:checked=>@state}, "#{@users[index].id}", "" %></td>
+
+	  <% end %>
+
+	  <% if (index+1)%3 == 0 %>
+		</tr>
+	  <% end %>
+
+
+	<% end %>
+
+	</table>
 <%= submit_tag %>
+
 

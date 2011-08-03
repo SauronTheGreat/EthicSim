@@ -6,8 +6,9 @@ class Questionnaire < ActiveRecord::Base
 
   #Validations
   validates_presence_of :name
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name ,:message =>"Sorry ! This name has already been taken"
+
 
   validates_presence_of :user_id
-  validates_numericality_of :user_id, :message => "should be a integer"
+  validates_numericality_of :user_id, :message => "User Id should be a integer"
 end

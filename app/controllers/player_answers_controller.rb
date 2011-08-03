@@ -63,12 +63,12 @@ class PlayerAnswersController < ApplicationController
 	#end
 	if  !params[:time_out].nil?
 
-	if TempQuestion.all.count > 0
-	  redirect_to new_player_answer_path(:questionnaire=>"Quiz") and return
-	else
-	  redirect_to messaging_display_path(:questionnaire=>"PostQuestionnaire") and return
+	  if TempQuestion.all.count > 0
+		redirect_to new_player_answer_path(:questionnaire=>"Quiz") and return
+	  else
+		redirect_to messaging_display_path(:questionnaire=>"PostQuestionnaire") and return
 
-	end
+	  end
 	end
 
 	@player_answer = PlayerAnswer.new
@@ -111,10 +111,10 @@ class PlayerAnswersController < ApplicationController
 	#@student_routing=StudentRouting.find_by_player_id(Player.find_by_game_id(@game.id).id)
 	#@student_routing.pre_neg_taken=true
 	#@student_routing.save
-
+	    @next_call=TempQuestion.first.statement
 	respond_to do |format|
 	  if @player_answer.save
-		@next_call=TempQuestion.first.statement
+
 		TempQuestion.destroy(:first)
 
 		if TempQuestion.all.count ==0
@@ -144,6 +144,9 @@ class PlayerAnswersController < ApplicationController
 
 		  end
 		end
+
+	  else
+		format.html { redirect_to :action => "new",:questionnaire=>@next_call ,:alert=>"Oops.answer cannot be blank"}
 	  end
 	end
   end

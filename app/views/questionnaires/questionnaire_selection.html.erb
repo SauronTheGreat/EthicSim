@@ -1,3 +1,18 @@
+<% if @questionnaires.count ==0 %>
+  <h2>No Questionnaire created yet !!</h2>
+  <p>
+	You will first have to create some questionnaires and only then you can assing that questionnaire to the student group !!
+  </p>
+  <p>
+	You can create a new questionnaire by clicking the link below:
+  </p>
+  <%= link_to questionnaires_path do %>
+		 <img class="rollover" id="design_button" src='/images/menu/design_icon_off.png' style="width:75px;height:75px" title="Manage Quizzes and Surveys"><br/>
+	 <% end %>
+
+
+  <%else %>
+
 <table width="85%" style="margin: auto">
   <tr>
     <td><h1>Quizzes and Surveys</h1></td>
@@ -15,3 +30,5 @@
 </table>
 <br/>
 <br/>
+
+<% end %>

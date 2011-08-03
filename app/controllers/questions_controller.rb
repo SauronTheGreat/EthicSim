@@ -79,7 +79,7 @@ class QuestionsController < ApplicationController
 
 		  end
 		end
-        if (@question.type.name=="Open-Ended Question" || @question.type.name=="True-False Question") then
+        if (@question.type.name=="Open Ended Question" || @question.type.name=="True-False Question") then
           format.html { redirect_to new_question_path(:questionnaire_id=>@questionnaire.id), :notice => 'Question was successfully created.' }
 		else
 		  if(@question.type.name=="Matrix Type Question")

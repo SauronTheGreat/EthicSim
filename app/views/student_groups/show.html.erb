@@ -1,4 +1,6 @@
 <p id="notice"><%= flash[:notice] %></p>
+<p><%= params[:notice] %></p>
+
 
 <h1><%= @student_group.name.titleize %></h1>
 <br/>
@@ -20,16 +22,19 @@
 	  </table>
 
 	</td>
+	 </tr>
+  <tr>
 	<td>
-	  <%= link_to "Settings",new_student_group_setting_path(:sgid=>@student_group.id) %>
-	</td>
-	<td>
-	  <%= link_to "Messaging Manager",:controller=>:display_messaging,:action=>'show_modes',:sgid=>@student_group.id   %>
-	</td>
-  </tr>
+		  <%= link_to "Settings",new_student_group_setting_path(:sgid=>@student_group.id) %>
+		</td>
+		<td>
+		  <%= link_to "Messaging Manager",:controller=>:display_messaging,:action=>'show_modes',:sgid=>@student_group.id   %>
+		</td>
 
-  <% @student_group_user=StudentGroupUser.find_all_by_student_group_id(@student_group.id) %>
-  <% if @student_group_user.nil? %>
+
+
+  <% @student_group_users=StudentGroupUser.find_all_by_student_group_id(@student_group.id) %>
+  <% if @student_group_users.blank? %>
   <h2 style="color: red">Please assign students</h2>
 	<% elsif @student_group.pre_questionnaire_id.nil? %>
   <h2 style="color: red">Please assign Pre Questionnaire </h2>
@@ -38,10 +43,12 @@
 <% elsif @student_group.post_questionnaire_id.nil? %>
   <h2 style="color: red">Please assign Post Questionnaire Id</h2>
 	<% else %>
+	  <td>
   <%= link_to "Proceed to game creation",new_game_path(:sgid=>@student_group.id) %>
+	  </td>
 	<% end %>
 
-
+  </tr>
 
 </table>
 <br/>

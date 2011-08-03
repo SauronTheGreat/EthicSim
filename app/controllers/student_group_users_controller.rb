@@ -47,6 +47,10 @@ class StudentGroupUsersController < ApplicationController
     # POST /student_group_users.xml
   def create
     # @student_group_user = StudentGroupUser.new(params[:student_group_user])
+	StudentGroupUser.delete_all(['student_group_id = ?',params[:sgid]])
+	if StudentGroupUser.all.count==0
+ #redirect_to(:controller=>:student_groups, :action=>'index', :notice => 'Student group user was successfully Manipulated.') and return
+	end
     f=0
     @student_group_users = params[:student_group_users].values.collect { |sgu| StudentGroupUser.new(sgu) }
     @student_group_users.each do |o|
@@ -62,10 +66,10 @@ class StudentGroupUsersController < ApplicationController
 
     respond_to do |format|
       if f==1
-        format.html { redirect_to(:controller=>:student_groups, :action=>'index', :notice => 'Student group user was successfully created.') }
+        format.html { redirect_to(:controller=>:student_groups, :action=>'show',:id=>params[:sgid], :notice => 'Student group user was successfully created.') }
         format.xml { render :xml => @student_group_user, :status => :created, :location => @student_group_user }
       else
-        format.html { render :action => "new" }
+        format.html { redirect_to(:controller=>:student_groups, :action=>'index', :notice => 'Student group user was successfully Manipulated.') }
         format.xml { render :xml => @student_group_user.errors, :status => :unprocessable_entity }
       end
     end

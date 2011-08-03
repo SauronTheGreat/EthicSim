@@ -3,5 +3,7 @@
 <% if params[:questionnaire]!="Closing" %>
 <%= link_to "Proceed",:controller => :player_answers, :action => 'new', :questionnaire=>params[:questionnaire] %>
 <% else %>
-<%= link_to "Thank You",root_path %>
+<%= link_to destroy_user_session_path, :method => 'delete' do %>
+            <img class="rollover" id="logout_button" src='/images/menu/logout_off.png' style="width:90px;height:40px;" title="Log Out">
+        <% end %>
 <% end %>
