@@ -80,4 +80,11 @@ class StudentGroupsController < ApplicationController
 	  format.xml { head :ok }
 	end
   end
+
+  def confirm_game_creation
+	@student_group=StudentGroup.find(params[:sgid])
+	@student_group_users=@student_group.student_group_users
+
+  end
 end
+

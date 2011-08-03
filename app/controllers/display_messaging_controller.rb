@@ -6,7 +6,7 @@ class DisplayMessagingController < ApplicationController
 
   def show_messages
 
-	@student_group=StudentGroup.find_by_facilitator_group_id(current_user.facilitator_group_id)
+	@student_group=StudentGroup.find(params[:sgid])
 	if (params[:questionnaire]=="PreQuestionnaire")
 	  @message=FacilitatorInput.find(:first, :conditions => ['student_group_id = ? and location = ?', @student_group.id, "instr_pre_quiz"])
 	elsif (params[:questionnaire]=="Quiz")

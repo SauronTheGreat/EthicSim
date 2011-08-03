@@ -1,0 +1,85 @@
+<div style="text-align: left;">
+  <ul>
+	<h2>Please Review your settings and confirm your Action</h2>
+
+	<li><p style="text-align: left;">Student Group Name:
+	  <b><%= StudentGroup.find(params[:sgid]).name %></b>
+	</p>
+	</li>
+
+
+	<li>
+	  <p style="text-align: left;">Students In the Group:
+	  <table style="margin-left: 0">
+		<tr>
+
+		  <% @student_group_users.each_with_index do |user, index| %>
+			<td style="border: solid">
+			  <b><%= User.find(user.user_id).full_name %></b>
+			</td>
+			<% if (index+1)%3==0 %>
+
+			  </tr>
+			<% end %>
+
+
+		  <% end %>
+		  </table>
+
+	  </p>
+
+	</li>
+	<li>
+	  <p>
+		Time for which each question comes:
+		<% if  !StudentGroupSetting.find_by_student_group_id(@student_group.id).nil? %>
+		  <b><%= StudentGroupSetting.find_by_student_group_id(@student_group.id).time_value %></b>
+		  <% else %>
+		<b>No Time Assigned </b>(The default is 30 seconds)
+		<% end %>
+
+	  </p>
+
+	</li>
+	<li>
+	  <p>
+		Pre Quiz Survey Assigned:
+		<% if @student_group.pre_questionnaire_id.nil? %>
+		  <b>No Pre Quiz Survey Assigned</b>
+		<% else %>
+		  <b><%= Questionnaire.find(@student_group.pre_questionnaire_id).name %></b>
+		<% end %>
+
+	  </p>
+	</li>
+
+	<li>
+
+	  <p>
+		Quiz Assigned:
+		<% if @student_group.pre_questionnaire_id.nil? %>
+		  <b>No Quiz Assigned</b>
+		<% else %>
+		  <b><%= Questionnaire.find(@student_group.quiz_id).name %></b>
+		<% end %>
+
+	  </p>
+
+	</li>
+	<li>
+	  <p>
+		Post Quiz Survey Assigned:
+		<% if @student_group.post_questionnaire_id.nil? %>
+		  <b>No Post Quiz Survey Assigned</b>
+		<% else %>
+		  <b><%= Questionnaire.find(@student_group.post_questionnaire_id).name %></b>
+		<% end %>
+
+	  </p>
+	</li>
+  </ul>
+</div>
+
+
+
+<%= link_to link_to image_tag("proceed.png", :style=>"width:160px;height:160px;", :class => "rollover", :title => "Confirm Game Creation "), new_game_path(:sgid=>params[:sgid]) %>

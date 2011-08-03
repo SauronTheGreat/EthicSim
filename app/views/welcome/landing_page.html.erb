@@ -1,0 +1,4 @@
+<div id="instruction_container">
+  <%= simple_format(@welcome_message) %>
+  <%= link_to "proceed >>> ", messaging_display_path(:questionnaire=>"PreQuestionnaire", :sgid=>@student_group.id), :class=>'large_button' %>
+</div>

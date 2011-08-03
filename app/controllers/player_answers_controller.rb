@@ -25,7 +25,17 @@ class PlayerAnswersController < ApplicationController
   # GET /player_answers/new.xml
   def new
 
-	@student_group=StudentGroup.find_by_facilitator_group_id(current_user.facilitator_group_id)
+	@student_group=StudentGroup.find(params[:sgid])
+	if !Temp.find(:all).blank?
+	  Temp.destroy_all
+	end
+
+	#inserting student group id in temp table
+	@temp=Temp.new
+	@temp.option_value=@student_group.id
+	@temp.save
+
+
 	@student_group_setting=StudentGroupSetting.find_by_student_group_id(@student_group.id)
 	if (params[:questionnaire]=="PreQuestionnaire")
 	  @questionnaire=Questionnaire.find(@student_group.pre_questionnaire_id)
@@ -64,9 +74,9 @@ class PlayerAnswersController < ApplicationController
 	if  !params[:time_out].nil?
 
 	  if TempQuestion.all.count > 0
-		redirect_to new_player_answer_path(:questionnaire=>"Quiz") and return
+		redirect_to new_player_answer_path(:questionnaire=>"Quiz", :sgid=>params[:sgid]) and return
 	  else
-		redirect_to messaging_display_path(:questionnaire=>"PostQuestionnaire") and return
+		redirect_to messaging_display_path(:questionnaire=>"PostQuestionnaire", :sgid=>params[:sgid]) and return
 
 	  end
 	end
@@ -90,6 +100,8 @@ class PlayerAnswersController < ApplicationController
 
 	@player_answer = PlayerAnswer.new(params[:player_answer])
 
+	@student_group=StudentGroup.find(Temp.first.option_value)
+	Temp.destroy_all
 
 	@sum=0
 	s="check_box_"
@@ -111,7 +123,7 @@ class PlayerAnswersController < ApplicationController
 	#@student_routing=StudentRouting.find_by_player_id(Player.find_by_game_id(@game.id).id)
 	#@student_routing.pre_neg_taken=true
 	#@student_routing.save
-	    @next_call=TempQuestion.first.statement
+	@next_call=TempQuestion.first.statement
 	respond_to do |format|
 	  if @player_answer.save
 
@@ -123,22 +135,22 @@ class PlayerAnswersController < ApplicationController
 		  elsif @next_call=="Quiz"
 			@next_call="PostQuestionnaire"
 		  elsif @next_call=="PostQuestionnaire"
-			format.html { redirect_to messaging_display_path(:questionnaire=>"Closing") }
+			format.html { redirect_to messaging_display_path(:questionnaire=>"Closing",:sgid=>@student_group.id) }
 			format.xml { render :xml => @player_answer, :status => :created, :location => @player_answer }
 		  end
 
 
-		  format.html { redirect_to messaging_display_path(:questionnaire=>@next_call) }
+		  format.html { redirect_to messaging_display_path(:questionnaire=>@next_call, :sgid=>@student_group.id) }
 		  format.xml { render :xml => @player_answer, :status => :created, :location => @player_answer }
 		else
 		  if TempQuestion.first.statement=="PreQuestionnaire"
-			format.html { redirect_to :controller => :player_answers, :action => 'new', :questionnaire=>"PreQuestionnaire" }
+			format.html { redirect_to :controller => :player_answers, :action => 'new', :questionnaire=>"PreQuestionnaire", :sgid=>@student_group.id }
 			format.xml { render :xml => @player_answer, :status => :created, :location => @player_answer }
 		  elsif (TempQuestion.first.statement=="Quiz")
-			format.html { redirect_to :controller => :player_answers, :action => 'new', :questionnaire=>"Quiz" }
+			format.html { redirect_to :controller => :player_answers, :action => 'new', :questionnaire=>"Quiz", :sgid=>@student_group.id }
 			format.xml { render :xml => @player_answer, :status => :created, :location => @player_answer }
 		  elsif (TempQuestion.first.statement=="PostQuestionnaire")
-			format.html { redirect_to :controller => :player_answers, :action => 'new', :questionnaire=>"PostQuestionnaire" }
+			format.html { redirect_to :controller => :player_answers, :action => 'new', :questionnaire=>"PostQuestionnaire", :sgid=>@student_group.id }
 			format.xml { render :xml => @player_answer, :status => :created, :location => @player_answer }
 
 
@@ -146,37 +158,7 @@ class PlayerAnswersController < ApplicationController
 		end
 
 	  else
-		format.html { redirect_to :action => "new",:questionnaire=>@next_call ,:alert=>"Oops.answer cannot be blank"}
-	  end
-	end
-  end
-
-
-  def createpost
-
-	@player_answers = params[:player_answers].values.collect { |player_answer| PlayerAnswer.new(player_answer) }
-
-	if @player_answers.all?(&:valid?)
-	  @player_answers.each do |p|
-		p.save
-
-
-	  end
-
-	end
-	#@student_routing=StudentRouting.find_by_player_id(Player.find_by_game_id(@game.id).id)
-	#@student_routing.post_neg_taken=true
-	#@student_routing.save
-
-	if @player_answers.all?(&:valid?)
-	  respond_to do |format|
-		format.html { redirect_to root_path }
-		format.xml { render :xml => @player_answer, :status => :created, :location => @player_answer }
-	  end
-	else
-	  respond_to do |format|
-		format.html { redirect_to :action => "new" }
-		format.xml { render :xml => @player_answer.errors, :status => :unprocessable_entity }
+		format.html { redirect_to :action => "new", :questionnaire=>@next_call, :alert=>"Oops.answer cannot be blank", :sgid=>@student_group.id }
 	  end
 	end
   end

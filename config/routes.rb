@@ -7,6 +7,7 @@ Simulation::Application.routes.draw do
   match 'all_users'=>'application#all_users'
   match 'messaging_modes'=>'display_messaging#show_modes'
   match 'messaging_display'=>'display_messaging#show_messages'
+  match "confirm_settings"=>'student_groups#confirm_game_creation'
 
 
   resources :facilitator_inputs
@@ -59,6 +60,7 @@ Simulation::Application.routes.draw do
   match 'createpost'=>'player_answers#createpost'
   match 'list_questions'=>'questionnaires#list_questions'
   match 'questionnaire_selection'=>'questionnaires#questionnaire_selection'
+  match 'landing_page'=>'welcome#landing_page'
 
 
 

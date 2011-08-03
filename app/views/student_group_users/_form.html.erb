@@ -10,7 +10,7 @@
 	  <%= fields_for "student_group_users[#{index}]", sgu do |f| %>
 		<%= f.hidden_field :student_group_id, :value=>params[:sgid].to_i %>
 
-		<% if StudentGroupUser.find_by_user_id(@users[index].id).nil? %>
+		<% if StudentGroupUser.find(:all,:conditions => ['user_id=? and student_group_id=?',@users[index].id,params[:sgid]]).blank? %>
 		  <% @state=false %>
 		<% else %>
 

@@ -15,7 +15,16 @@
 
     <%= f.hidden_field :student_group_id ,:value=>params[:sgid]%>
   </div>
+
+   <div class="field">
+
+	 <%= f.label "Name of The game" %>
+    <%= f.text_field :name %>
+  </div>
+
   <div class="actions">
+
+
     <%= f.submit "Confirm Game Creation"%>
   </div>
 <% end %>
