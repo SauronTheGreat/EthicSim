@@ -7,7 +7,7 @@ class Question < ActiveRecord::Base
   belongs_to :type
   belongs_to :category
 
- #Validations
+  #Validations
   validates_presence_of :statement
   validates_presence_of :type_id
   #validates_presence_of :category_id

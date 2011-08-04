@@ -135,7 +135,7 @@ class PlayerAnswersController < ApplicationController
 		  elsif @next_call=="Quiz"
 			@next_call="PostQuestionnaire"
 		  elsif @next_call=="PostQuestionnaire"
-			format.html { redirect_to messaging_display_path(:questionnaire=>"Closing",:sgid=>@student_group.id) }
+			format.html { redirect_to messaging_display_path(:questionnaire=>"Closing", :sgid=>@student_group.id) }
 			format.xml { render :xml => @player_answer, :status => :created, :location => @player_answer }
 		  end
 

@@ -9,8 +9,8 @@
 <table style="width:90%; text-align: left;">
   <tr>
 	<% if Game.find_by_student_group_id(@student_group.id).nil? %>
-	<td><%= link_to image_tag('/images/student_management_off.png', :style=>"width:160px;height:160px;", :class=>'rollover', :title=>'Student Manager'), {:controller => :student_group_users, :action => 'new', :sgid=>@student_group.id} %></td>
-	  <% end %>
+	  <td><%= link_to image_tag('/images/student_management_off.png', :style=>"width:160px;height:160px;", :class=>'rollover', :title=>'Student Manager'), {:controller => :student_group_users, :action => 'new', :sgid=>@student_group.id} %></td>
+	<% end %>
 	<td><%= link_to image_tag('/images/quiz_icon_off.png', :style=>"width:150px;height:150px;", :class=>'rollover', :title=>'Assign Quiz'), questionnaire_selection_path(:sgid=>@student_group.id, :questionnaire=>"Quiz") %></td>
 	<td>
 	  <table>
@@ -37,22 +37,22 @@
 	<% if Game.find_by_student_group_id(@student_group.id).nil? %>
 
 
-	<% @student_group_users=StudentGroupUser.find_all_by_student_group_id(@student_group.id) %>
-	<% if @student_group_users.blank? %>
-	  <h2 style="color: red">Please assign students</h2>
-	<% elsif @student_group.pre_questionnaire_id.nil? %>
-	  <h2 style="color: red">Please assign Pre Questionnaire </h2>
-	<% elsif @student_group.quiz_id.nil? %>
-	  <h2 style="color: red">Please assign Quiz</h2>
-	<% elsif @student_group.post_questionnaire_id.nil? %>
-	  <h2 style="color: red">Please assign Post Questionnaire Id</h2>
-	<% else %>
-	  <td>
-		<%= link_to link_to image_tag("proceed.png", :style=>"width:160px;height:160px;", :class => "rollover", :title => "Proceed for Game Creation "), confirm_settings_path(:sgid=>@student_group.id) %>
-	  </td>
-	<% end %>
+	  <% @student_group_users=StudentGroupUser.find_all_by_student_group_id(@student_group.id) %>
+	  <% if @student_group_users.blank? %>
+		<h2 style="color: red">Please assign students</h2>
+	  <% elsif @student_group.pre_questionnaire_id.nil? %>
+		<h2 style="color: red">Please assign Pre Questionnaire </h2>
+	  <% elsif @student_group.quiz_id.nil? %>
+		<h2 style="color: red">Please assign Quiz</h2>
+	  <% elsif @student_group.post_questionnaire_id.nil? %>
+		<h2 style="color: red">Please assign Post Questionnaire Id</h2>
 	  <% else %>
-	    <h2 style="color: green;">Game already created</h2>
+		<td>
+		  <%= link_to link_to image_tag("proceed.png", :style=>"width:160px;height:160px;", :class => "rollover", :title => "Proceed for Game Creation "), confirm_settings_path(:sgid=>@student_group.id) %>
+		</td>
+	  <% end %>
+	<% else %>
+	  <h2 style="color: green;">Game already created</h2>
 	<% end %>
 
   </tr>

@@ -1,34 +1,36 @@
 <% if @questionnaires.count ==0 %>
   <h2>No Questionnaire created yet !!</h2>
   <p>
-	You will first have to create some questionnaires and only then you can assing that questionnaire to the student group !!
+	You will first have to create some questionnaires and only then you can assing that questionnaire to the student
+	group !!
   </p>
   <p>
 	You can create a new questionnaire by clicking the link below:
   </p>
   <%= link_to questionnaires_path do %>
-		 <img class="rollover" id="design_button" src='/images/menu/design_icon_off.png' style="width:75px;height:75px" title="Manage Quizzes and Surveys"><br/>
-	 <% end %>
-
-
-  <%else %>
-
-<table width="85%" style="margin: auto">
-  <tr>
-    <td><h1>Quizzes and Surveys</h1></td>
-    <td width="10%"></td>
-
-  </tr>
-  <% @questionnaires.each do |questionnaire| %>
-      <tr>
-        <td style="text-align: left;border: solid 1px #000000"><%= questionnaire.name.titleize %></td>
-        <td width="10%"></td>
-        <td class="blacky"><%= link_to image_tag('/images/menu/settings_icon_off.png', :style=>"width:50px;height:50px;", :class=>'rollover', :title=>'Manage'), list_questions_path(:questionnaire_id=>questionnaire.id,:sgid=>params[:sgid],:questionnaire=>params[:questionnaire]) %></td>
-
-      </tr>
+	<img class="rollover" id="design_button" src='/images/menu/design_icon_off.png' style="width:75px;height:75px" title="Manage Quizzes and Surveys">
+	<br/>
   <% end %>
-</table>
-<br/>
-<br/>
+
+
+<% else %>
+
+  <table width="85%" style="margin: auto">
+	<tr>
+	  <td><h1>Quizzes and Surveys</h1></td>
+	  <td width="10%"></td>
+
+	</tr>
+	<% @questionnaires.each do |questionnaire| %>
+	  <tr>
+		<td style="text-align: left;border: solid 1px #000000"><%= questionnaire.name.titleize %></td>
+		<td width="10%"></td>
+		<td class="blacky"><%= link_to image_tag('/images/menu/settings_icon_off.png', :style=>"width:50px;height:50px;", :class=>'rollover', :title=>'Manage'), list_questions_path(:questionnaire_id=>questionnaire.id, :sgid=>params[:sgid], :questionnaire=>params[:questionnaire]) %></td>
+
+	  </tr>
+	<% end %>
+  </table>
+  <br/>
+  <br/>
 
 <% end %>

@@ -52,7 +52,6 @@ Simulation::Application.routes.draw do
   get "welcome/index"
 
 
-
   match 'question_selection'=>'questions#selection_for_question'
   match 'use_question'=>'questions#use_question'
   match 'use_question_remove'=>'questions#remove_question'
@@ -61,7 +60,6 @@ Simulation::Application.routes.draw do
   match 'list_questions'=>'questionnaires#list_questions'
   match 'questionnaire_selection'=>'questionnaires#questionnaire_selection'
   match 'landing_page'=>'welcome#landing_page'
-
 
 
   # The priority is based upon order of creation:
@@ -113,7 +111,7 @@ Simulation::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-   root :to => "welcome#index"
+  root :to => "welcome#index"
 
   # See how all your routes lay out with "rake routes"
 

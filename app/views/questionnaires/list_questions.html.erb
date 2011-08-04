@@ -11,7 +11,7 @@
 
 
 	  <% if question.type.name=="Open Ended Question" %>
-		<p align="left"><%= text_area_tag " ","Answer Goes here...", :disabled=>true %></p>
+		<p align="left"><%= text_area_tag " ", "Answer Goes here...", :disabled=>true %></p>
 
 	  <% end %>
 
@@ -28,7 +28,7 @@
 		<% else %>
 		  <!--To handle matrix-->
 
-		  <table  style="margin-left: 0">
+		  <table style="margin-left: 0">
 			<tr>
 			  <% question.options.each_with_index do |option, index| %>
 
@@ -39,7 +39,7 @@
 				<% end %>
 
 			  <% end %>
-		      </table>
+			  </table>
 
 		<% end %>
 
@@ -50,14 +50,14 @@
 	  <% else %>
 		<% if question.type.name !="Open Ended Question" %>
 
-		<p>(No Options Added Yet)</p>
-		  <% end %>
+		  <p>(No Options Added Yet)</p>
+		<% end %>
 	  <% end %>
 
 	<% end %>
 
   </ol>
-  <%= link_to  use_questionnaire_path(:sgid=>params[:sgid], :questionnaire_id=>@questionnaire.id, :questionnaire=>params[:questionnaire]) do %>
-  <%= image_tag "assign_questionnaire.jpg",:size=>"200x100" %>
+  <%= link_to use_questionnaire_path(:sgid=>params[:sgid], :questionnaire_id=>@questionnaire.id, :questionnaire=>params[:questionnaire]) do %>
+	<%= image_tag "assign_questionnaire.jpg", :size=>"200x100" %>
   <% end %>
 </div>

@@ -13,8 +13,8 @@ class FacilitatorGroupsController < ApplicationController
 	end
   end
 
-	# GET /facilitator_groups/1
-	# GET /facilitator_groups/1.xml
+  # GET /facilitator_groups/1
+  # GET /facilitator_groups/1.xml
   def show
 	@facilitator_group = FacilitatorGroup.find(params[:id])
 
@@ -24,8 +24,8 @@ class FacilitatorGroupsController < ApplicationController
 	end
   end
 
-	# GET /facilitator_groups/new
-	# GET /facilitator_groups/new.xml
+  # GET /facilitator_groups/new
+  # GET /facilitator_groups/new.xml
   def new
 	@facilitator_group = FacilitatorGroup.new
 
@@ -35,13 +35,13 @@ class FacilitatorGroupsController < ApplicationController
 	end
   end
 
-	# GET /facilitator_groups/1/edit
+  # GET /facilitator_groups/1/edit
   def edit
 	@facilitator_group = FacilitatorGroup.find(params[:id])
   end
 
-	# POST /facilitator_groups
-	# POST /facilitator_groups.xml
+  # POST /facilitator_groups
+  # POST /facilitator_groups.xml
   def create
 	@facilitator_group = FacilitatorGroup.new(params[:facilitator_group])
 
@@ -57,8 +57,8 @@ class FacilitatorGroupsController < ApplicationController
 	end
   end
 
-	# PUT /facilitator_groups/1
-	# PUT /facilitator_groups/1.xml
+  # PUT /facilitator_groups/1
+  # PUT /facilitator_groups/1.xml
   def update
 	@facilitator_group = FacilitatorGroup.find(params[:id])
 
@@ -73,8 +73,8 @@ class FacilitatorGroupsController < ApplicationController
 	end
   end
 
-	# DELETE /facilitator_groups/1
-	# DELETE /facilitator_groups/1.xml
+  # DELETE /facilitator_groups/1
+  # DELETE /facilitator_groups/1.xml
   def destroy
 	@facilitator_group = FacilitatorGroup.find(params[:id])
 	@facilitator_group.destroy

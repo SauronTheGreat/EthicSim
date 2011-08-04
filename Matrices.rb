@@ -2,37 +2,37 @@ class A
 
   def index
 
-    i,j = 5,5
+	i, j = 5, 5
 
-    mat = Array.new(i) { Array.new(j) }
+	mat = Array.new(i) { Array.new(j) }
 
-          x=0.1
+	x=0.1
 
-    for i in 0..4
+	for i in 0..4
 
-	for j in 0..4
+	  for j in 0..4
 
 		mat[i][j] = x
-		 x=x+0.4
+		x=x+0.4
+
+	  end
 
 	end
 
-      end
-
-       puts "The given Matrix is :"
+	puts "The given Matrix is :"
 
 
-      for i in 0..4
+	for i in 0..4
 
-        for j in 0..4
+	  for j in 0..4
 
-        print "#{mat[i][j]}\t"
+		print "#{mat[i][j]}\t"
 
-   end
- puts"\t"
- end
+	  end
+	  puts "\t"
+	end
 
-end
+  end
 end
 
 

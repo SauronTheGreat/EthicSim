@@ -1,26 +1,26 @@
 <table style="width:100%">
   <tr>
-    <td>
-      <table border="1" width="80%" bgcolor="gold" id="hover_checked">
-        <tr>
-          <% for i in 1..25 %>
+	<td>
+	  <table border="1" width="80%" bgcolor="gold" id="hover_checked">
+		<tr>
+		  <% for i in 1..25 %>
 
-              <td class="alertbod" style="width:20%; background-color: white;" >
-                <%= check_box_tag "check_box_#{i}", @new_list[i-1] %>
-                <%= "#{@new_list[i-1]}" %>
-              </td>
+			<td class="alertbod" style="width:20%; background-color: white;">
+			  <%= check_box_tag "check_box_#{i}", @new_list[i-1] %>
+			  <%= "#{@new_list[i-1]}" %>
+			</td>
 
-              <% if i % 5 == 0 %>
+			<% if i % 5 == 0 %>
 
-                  </tr>
-              <% end %>
+			  </tr>
+			<% end %>
 
-          <% end %>
-          </table>
-    </td>
-    <td>
-      <%= link_to 'Save Matrix', :action => 'add_sum', :question_id=>params[:question_id] %> <br/>
-      <%= link_to 'Refresh  Matrix', :action => 'index', :question_id=>params[:question_id] %>
-    </td>
+		  <% end %>
+		  </table>
+	</td>
+	<td>
+	  <%= link_to 'Save Matrix', :action => 'add_sum', :question_id=>params[:question_id] %> <br/>
+	  <%= link_to 'Refresh  Matrix', :action => 'index', :question_id=>params[:question_id] %>
+	</td>
   </tr>
 </table>

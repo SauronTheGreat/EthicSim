@@ -1,25 +1,27 @@
 <%= form_for(@facilitator_input) do |f| %>
   <% if @facilitator_input.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@facilitator_input.errors.count, "error") %> prohibited this facilitator_input from being saved:</h2>
+	<div id="error_explanation">
+	  <h2><%= pluralize(@facilitator_input.errors.count, "error") %> prohibited this facilitator_input from being
+		saved:</h2>
 
-      <ul>
-      <% @facilitator_input.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+	  <ul>
+		<% @facilitator_input.errors.full_messages.each do |msg| %>
+		  <li><%= msg %></li>
+		<% end %>
+	  </ul>
+	</div>
   <% end %>
 
-    <%= f.hidden_field :location,:value=>params[:location] %>
-    <%= f.hidden_field :student_group_id,:value=>params[:sgid] %>
+  <%= f.hidden_field :location, :value=>params[:location] %>
+  <%= f.hidden_field :student_group_id, :value=>params[:sgid] %>
 
 
   <div class="field">
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
+	<%= f.label :body %>
+	<br/>
+	<%= f.text_area :body %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+	<%= f.submit %>
   </div>
 <% end %>

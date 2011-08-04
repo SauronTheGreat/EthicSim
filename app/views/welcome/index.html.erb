@@ -12,12 +12,12 @@
 
 		  <b>Listing Games</b>
 		  <ul>
-		  <% @games.each do |game| %>
+			<% @games.each do |game| %>
 
-		         <li><%= link_to "#{game.name}",landing_page_path(:active_game=>game.id) %></li>
+			  <li><%= link_to "#{game.name}", landing_page_path(:active_game=>game.id) %></li>
 
-		  <% end %>
-			</ul>
+			<% end %>
+		  </ul>
 
 		  <!--end of code-->
 

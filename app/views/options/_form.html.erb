@@ -4,49 +4,49 @@
 <% @position=0 %>
 <div style="text-align: center; height:90%; overflow: auto;">
   <table>
-    <% @question.options.each_with_index do |option, index| %>
-        <tr>
-          <td style="text-align: left;"><%= @position=index+1 %>. <%= h option.name %></td>
-          <td style="width:20%"></td>
+	<% @question.options.each_with_index do |option, index| %>
+	  <tr>
+		<td style="text-align: left;"><%= @position=index+1 %>. <%= h option.name %></td>
+		<td style="width:20%"></td>
 
-        </tr>
-    <% end %>
+	  </tr>
+	<% end %>
   </table>
 </div>
 <br/>
 <br/>
 <% content_for :small_side do %>
-    <div class="small_side_container">
-      <h2> Add a New Option...</h2>
+  <div class="small_side_container">
+	<h2> Add a New Option...</h2>
 
-      <%= form_for @option, :url => {:action => :create, :question_id => @question.id} do |f| %>
-          <% if @option.errors.any? %>
-              <div id="error_explanation">
-                <h2><%= pluralize(@option.errors.count, "error") %> prohibited this question from being saved:</h2>
+	<%= form_for @option, :url => {:action => :create, :question_id => @question.id} do |f| %>
+	  <% if @option.errors.any? %>
+		<div id="error_explanation">
+		  <h2><%= pluralize(@option.errors.count, "error") %> prohibited this question from being saved:</h2>
 
-                <ul>
-                  <% @option.errors.full_messages.each do |msg| %>
-                      <li><%= msg %></li>
-                  <% end %>
-                </ul>
-              </div>
-          <% end %>
-          <table>
-            <tr>
-              <td style="vertical-align: top;"><%= f.label "#{@position+1}." %></td>
-              <td><%= f.text_field :name, :size=>"30x10" %></td>
-			     <%= f.hidden_field :question_id, :value=>params[:question_id].to_i %>
-            </tr>
-          </table>
-          <br/>
-          <br/>
-          <br/>
+		  <ul>
+			<% @option.errors.full_messages.each do |msg| %>
+			  <li><%= msg %></li>
+			<% end %>
+		  </ul>
+		</div>
+	  <% end %>
+	  <table>
+		<tr>
+		  <td style="vertical-align: top;"><%= f.label "#{@position+1}." %></td>
+		  <td><%= f.text_field :name, :size=>"30x10" %></td>
+		  <%= f.hidden_field :question_id, :value=>params[:question_id].to_i %>
+		</tr>
+	  </table>
+	  <br/>
+	  <br/>
+	  <br/>
 
 
-          <%= f.submit %>
-          <br/>
-          <br/>
-          <br/>
-      <% end %>
-    </div>
+	  <%= f.submit %>
+	  <br/>
+	  <br/>
+	  <br/>
+	<% end %>
+  </div>
 <% end %>

@@ -34,8 +34,8 @@
 		Time for which each question comes:
 		<% if  !StudentGroupSetting.find_by_student_group_id(@student_group.id).nil? %>
 		  <b><%= StudentGroupSetting.find_by_student_group_id(@student_group.id).time_value %></b>
-		  <% else %>
-		<b>No Time Assigned </b>(The default is 30 seconds)
+		<% else %>
+		  <b>No Time Assigned </b>(The default is 30 seconds)
 		<% end %>
 
 	  </p>

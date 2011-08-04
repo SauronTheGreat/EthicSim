@@ -14,13 +14,13 @@ class DisplayMessagingController < ApplicationController
 	elsif params[:questionnaire]=="PostQuestionnaire"
 	  @message=FacilitatorInput.find(:first, :conditions => ['student_group_id = ? and location = ?', @student_group.id, "instr_post_quiz"])
 	elsif params[:questionnaire]=="Closing"
-		  @message=FacilitatorInput.find(:first, :conditions => ['student_group_id = ? and location = ?', @student_group.id, "instr_closing"])
-		  end
-
-	  if (!@message.nil?)
-		@message=@message.body
-	  end
-
+	  @message=FacilitatorInput.find(:first, :conditions => ['student_group_id = ? and location = ?', @student_group.id, "instr_closing"])
 	end
+
+	if (!@message.nil?)
+	  @message=@message.body
+	end
+
   end
+end
 

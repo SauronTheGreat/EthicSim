@@ -10,24 +10,24 @@
 
   <script type="text/javascript">
 
-      /* IMAGE ROLLOVER SCRIPT */
+	/* IMAGE ROLLOVER SCRIPT */
 
-      // Preload the images for speed
-      $.preloadImages('/images/menu/start_button_on.png');
-      // Set up rollover
-      $(
-              function() {
+	// Preload the images for speed
+	$.preloadImages('/images/menu/start_button_on.png');
+	// Set up rollover
+	$(
+			function() {
 
-                  $("img.rollover").hover(
-                          function() {
-                              this.src = this.src.replace("_off", "_on");
-                          },
-                          function() {
-                              this.src = this.src.replace("_on", "_off");
-                          }
-                  );
-              }
-      )
+			  $("img.rollover").hover(
+					  function() {
+						this.src = this.src.replace("_off", "_on");
+					  },
+					  function() {
+						this.src = this.src.replace("_on", "_off");
+					  }
+			  );
+			}
+	)
 
   </script>
 
@@ -37,11 +37,11 @@
 
 <div class="empty_single_large_container">
   <div id="login_container">
-    <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-    <% end %>
-    <%= content_tag :h1, yield(:title) if show_title? %>
-    <%= yield %>
+	<% flash.each do |name, msg| %>
+	  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+	<% end %>
+	<%= content_tag :h1, yield(:title) if show_title? %>
+	<%= yield %>
   </div>
 
 </div>

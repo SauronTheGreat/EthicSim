@@ -4,10 +4,10 @@ Please upload an Excel file that contains student data. The expected format is:
 <br/>
 <table>
   <tr>
-    <td style="border: solid">First Name</td>
-    <td style="border: solid">Last Name</td>
-    <td style="border: solid">Email</td>
-    <td style="border: solid">Initial Password</td>
+	<td style="border: solid">First Name</td>
+	<td style="border: solid">Last Name</td>
+	<td style="border: solid">Email</td>
+	<td style="border: solid">Initial Password</td>
 	<td style="border: solid">UserName</td>
 
   </tr>
@@ -16,12 +16,12 @@ Please upload an Excel file that contains student data. The expected format is:
 <br/>
 
 
-<%= form_tag({:action => 'pick_data'},:multipart => true) do %>
+<%= form_tag({:action => 'pick_data'}, :multipart => true) do %>
 
-Select File :
-<%= file_field 'upload', 'datafile' %>
+  Select File :
+  <%= file_field 'upload', 'datafile' %>
 
-<%= submit_tag "Upload" %>
+  <%= submit_tag "Upload" %>
 
 <% end %>
 <br/>

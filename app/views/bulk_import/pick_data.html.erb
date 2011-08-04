@@ -1,15 +1,20 @@
-<div style="text-align: center;"><h1>Import Complete!</h1></div>
+<% if @user_list.blank? %>
+  <h2>Errors in the file you uploaded.Please try again later.</h2>
+<% else %>
+  <div style="text-align: center;"><h1>Import Complete!</h1></div>
 
-The following users were imported:
-<br/>
-<br/>
-<table>
-  <% @user_list.each do |user| %>
-      <tr>
-        <td style="border: solid 1px #000000"><%= user %></td>
-      </tr>
-  <% end %>
-</table>
-<br/>
+  The following users were imported:
+  <br/>
+  <br/>
+  <table>
+	<% @user_list.each do |user| %>
+	  <tr>
+		<td style="border: solid 1px #000000"><%= user %></td>
+	  </tr>
+	<% end %>
+  </table>
+  <br/>
 
-<%= link_to image_tag('/images/menu/next_off.png', :style=>"width:75px;height:75px;", :class=>'rollover', :title=>'On to Student Group Manager'), student_groups_path %>
+  <%= link_to image_tag('/images/menu/next_off.png', :style=>"width:75px;height:75px;", :class=>'rollover', :title=>'On to Student Group Manager'), student_groups_path %>
+
+<% end %>

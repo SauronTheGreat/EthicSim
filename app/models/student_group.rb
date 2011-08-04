@@ -6,7 +6,7 @@ class StudentGroup < ActiveRecord::Base
   has_many :student_group_users, :dependent => :destroy
   has_many :student_group_questionnaires, :dependent => :destroy
 
-	#Validations
+  #Validations
   validates_presence_of :facilitator_group_id
   validates_presence_of :name
   validates_uniqueness_of :name

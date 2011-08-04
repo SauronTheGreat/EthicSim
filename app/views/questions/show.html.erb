@@ -5,34 +5,34 @@
 
 
 <% if @question.options.count < 25 %>
-    <% @question.options.each do |option| %>
-        <ul style="text-align: left;">
-          <li><%= option.name %></li>
-        </ul>
-    <% end %>
+  <% @question.options.each do |option| %>
+	<ul style="text-align: left;">
+	  <li><%= option.name %></li>
+	</ul>
+  <% end %>
 <% else %>
-    <table border="1">
-      <tr>
-        <% @question.options.each_with_index do |option, index| %>
+  <table border="1">
+	<tr>
+	  <% @question.options.each_with_index do |option, index| %>
 
-            <td>   <%= option.name %></td>
-            <% if (index+1)%5==0 %>
-                </tr>
-            <% end %>
+		<td>   <%= option.name %></td>
+		<% if (index+1)%5==0 %>
+		  </tr>
+		<% end %>
 
-        <% end %>
-        </table>
+	  <% end %>
+	  </table>
 
 
 <% end %>
 
 
 <% if  @question.options.count==0 %>
-    <% if @question.type.name!="Matrix" %>
-        <td><%= link_to 'Add Option', :controller => :options, :action => 'new', :qid=>@question.id %></td>|
-    <% else %>
-        <td><%= link_to 'Generate Matrix', :controller => :matrix, :action => 'index', :question_id=>@question.id %></td>|
-    <% end %>
+  <% if @question.type.name!="Matrix" %>
+	<td><%= link_to 'Add Option', :controller => :options, :action => 'new', :qid=>@question.id %></td>|
+  <% else %>
+	<td><%= link_to 'Generate Matrix', :controller => :matrix, :action => 'index', :question_id=>@question.id %></td>|
+  <% end %>
 
 <% else %>
 <% end %>

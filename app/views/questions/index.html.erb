@@ -33,10 +33,10 @@
 
 		<% if params[:my_questionnaire_id].nil? %>
 		  <% if  params[:questionnaire_id].nil? %>
-		  <td></td>
-			<% else %>
-		  <td><%= link_to "Use this", use_question_path(:question_id=>question.id, :questionnaire_id=>params[:questionnaire_id]) %></td>
-			       <%end%>
+			<td></td>
+		  <% else %>
+			<td><%= link_to "Use this", use_question_path(:question_id=>question.id, :questionnaire_id=>params[:questionnaire_id]) %></td>
+		  <% end %>
 		<% else %>
 		  <td><%= link_to "Remove this", use_question_remove_path(:question_id=>question.id) %></td>
 

@@ -4,55 +4,55 @@
 <% @position=0 %>
 <div style="text-align: center; height:90%; overflow: auto;">
   <table>
-    <% @questions.each_with_index do |question, index| %>
-        <tr>
-          <td style="text-align: left;"><%= @position=index+1 %>. <%= h question.statement %></td>
-          <td style="width:20%"></td>
-          <td><%= h question.type.name %> </td>
-        </tr>
-    <% end %>
+	<% @questions.each_with_index do |question, index| %>
+	  <tr>
+		<td style="text-align: left;"><%= @position=index+1 %>. <%= h question.statement %></td>
+		<td style="width:20%"></td>
+		<td><%= h question.type.name %> </td>
+	  </tr>
+	<% end %>
   </table>
-  <%= link_to "Done",questionnaires_path %>
+  <%= link_to "Done", questionnaires_path %>
 </div>
 <br/>
 <br/>
 <% content_for :small_side do %>
-    <div class="small_side_container">
-      <h2> Add a New Question...</h2>
+  <div class="small_side_container">
+	<h2> Add a New Question...</h2>
 
-      <%= form_for @question, :url => {:action => :create, :questionnaire_id => @questionnaire.id} do |f| %>
-          <% if @question.errors.any? %>
-              <div id="error_explanation">
-                <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+	<%= form_for @question, :url => {:action => :create, :questionnaire_id => @questionnaire.id} do |f| %>
+	  <% if @question.errors.any? %>
+		<div id="error_explanation">
+		  <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
 
-                <ul>
-                  <% @question.errors.full_messages.each do |msg| %>
-                      <li><%= msg %></li>
-                  <% end %>
-                </ul>
-              </div>
-          <% end %>
-          <table>
-            <tr>
-              <td style="vertical-align: top;"><%= f.label "#{@position+1}." %></td>
-              <td><%= f.text_area :statement, :size=>"30x10" %></td>
-            </tr>
-          </table>
-          <br/>
-          <br/>
-          <table>
-            <tr>
-              <td><%= f.label :type_id %></td>
-              <td><%= f.select "type_id", Type.all.collect { |t| [t.name, t.id] } %></td>
-            </tr>
-          </table>
-          <br/>
+		  <ul>
+			<% @question.errors.full_messages.each do |msg| %>
+			  <li><%= msg %></li>
+			<% end %>
+		  </ul>
+		</div>
+	  <% end %>
+	  <table>
+		<tr>
+		  <td style="vertical-align: top;"><%= f.label "#{@position+1}." %></td>
+		  <td><%= f.text_area :statement, :size=>"30x10" %></td>
+		</tr>
+	  </table>
+	  <br/>
+	  <br/>
+	  <table>
+		<tr>
+		  <td><%= f.label :type_id %></td>
+		  <td><%= f.select "type_id", Type.all.collect { |t| [t.name, t.id] } %></td>
+		</tr>
+	  </table>
+	  <br/>
 
 
-          <%= f.submit %>
-          <br/>
-          <br/>
-          <br/>
-      <% end %>
-    </div>
+	  <%= f.submit %>
+	  <br/>
+	  <br/>
+	  <br/>
+	<% end %>
+  </div>
 <% end %>

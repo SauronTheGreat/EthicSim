@@ -8,5 +8,4 @@ class FacilitatorInput < ActiveRecord::Base
   validates_presence_of :student_group_id
 
 
-
 end
