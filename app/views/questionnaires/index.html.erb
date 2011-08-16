@@ -1,6 +1,10 @@
+<%= content_for(:header_section) do %>
+  <p> Quizzes and Surveys</p>
+  <% end %>
+
 <table width="85%" style="margin: auto">
   <tr>
-	<td><h1>Quizzes and Surveys</h1></td>
+
 	<td width="10%"></td>
 	<td colspan="3"><%= link_to image_tag('/images/add_user_off.png', :style=>"width:50px;height:50px;", :class=>'rollover', :title=>'New Questionnaire'), new_questionnaire_path %></td>
   </tr>

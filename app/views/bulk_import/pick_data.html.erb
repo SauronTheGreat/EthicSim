@@ -1,7 +1,21 @@
+<% if !@user_list.blank? %>
+  <%= content_for(:header_section) do %>
+	<p>Import Complete!</p>
+  <% end %>
+<% else %>
+
+  <%= content_for(:header_section) do %>
+	<p>Import Error!</p>
+  <% end %>
+
+
+
+<% end %>
+
 <% if @user_list.blank? %>
   <h2>Errors in the file you uploaded.Please try again later.</h2>
 <% else %>
-  <div style="text-align: center;"><h1>Import Complete!</h1></div>
+  <div style="text-align: center;"></div>
 
   The following users were imported:
   <br/>
@@ -9,7 +23,7 @@
   <table>
 	<% @user_list.each do |user| %>
 	  <tr>
-		<td style="border: solid 1px #000000"><%= user %></td>
+		<td><%= user %></td>
 	  </tr>
 	<% end %>
   </table>

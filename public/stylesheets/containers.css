@@ -1,3 +1,10 @@
+.empty_full_screen {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  z-index: 10;
+}
+
 .single_large_container {
   width: 90%;
   height: 90%;
@@ -33,25 +40,25 @@
 }
 
 .left_bar {
-  width: 10%;
+  width: 20%;
   height: 98%;
   position: absolute;
   left: 0;
   top: 0;
-  background-color: #333333;
-  border-radius: 0px 5px 5px 0px;
-  border: solid 1px black;
+  background-color: transparent;
+  /*border-radius: 0px 5px 5px 0px;*/
+  /*border: solid 1px black;*/
   vertical-align: top;
   padding-top: 1%;
   text-align: center;
 }
 
 .left_bar_remainder_empty {
-  width: 90%;
+  width: 80%;
   height: 98%;
   position: absolute;
-  left: 10%;
-  top: 0;
+  left: 20%;
+  top: 0px;
   background-color: transparent;
   vertical-align: top;
   padding-top: 1%;
@@ -71,31 +78,29 @@
 }
 
 #login_container {
+  position: relative;
   width: 50%;
   margin: 0 auto;
-  background-color: #FFF;
-  border-radius: 5px;
-  padding: 2% 2% 2% 2%;
-  border: solid 1px black;
-  margin-top: 18%;
-  text-align: center;
-}
+  /*background-color: #FFF;*/
+  background: url('/images/container-back.jpg') no-repeat ;
 
-#login_container {
-  width: 50%;
-  margin: 0 auto;
-  background-color: #FFF;
+
+  background-size:100% 100%;
   border-radius: 5px;
   padding: 2% 2% 2% 2%;
   border: solid 1px black;
-  margin-top: 18%;
-  text-align: center;
+
+  z-index: 1;
+  color: #f5deb3;
+  font-weight: bold;
+  text-align: left;
+  padding-left: 5%;
 }
 
 #instruction_container {
   width: 50%;
-  position: absolute;
-  left: 5%;
+  position: relative;
+  margin: 5%;
   top: 8%;
   background-color: #FFF;
   border-radius: 5px;
@@ -107,11 +112,71 @@
 .free_floater {
   width: 50%;
   position: absolute;
-  left: 5%;
-  top: 8%;
-  background-color: #FFF;
-  border-radius: 5px;
-  padding: 2% 2% 2% 2%;
-  border: solid 1px black;
+  left: 20%;
+  top: 15%;
+  background-color: #1f1f1f;
+  border-radius: 10px;
+  padding-top: 2%;
+  padding-right: 3%;
+  padding-left: 3%;
+  padding-bottom: 2%;
+  /*border: solid 1px black;*/
   text-align: center;
+  z-index:100;
+  color: #f5deb3;
+
+}
+
+.header_section {
+  width: 96%;
+  height: 10%;
+  position: absolute;
+  left: 0;
+  top:0;
+  font-size: 20px;
+  padding-top: 2%;
+  padding-right: 2%;
+  padding-left:2%;
+  padding-bottom: 2%;
+  background:#ff9900;
+  border-radius: 10px;
+
+  text-align: center;
+  z-index: 110;
+
+  color: white;
+
+
+
+		/* For WebKit (Safari, Google Chrome etc) */
+		background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#ff9900));
+		/* For Mozilla/Gecko (Firefox etc) */
+		background: -moz-linear-gradient(top, #000, #ff9900);
+		/* For Internet Explorer 5.5 - 7 */
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#000, endColorstr=#ff9900);
+		/* For Internet Explorer 8 */
+		-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF0000FF, endColorstr=#FFFFFFFF)";
+
+
+
+
+
+}
+
+.header_section p
+{
+  margin-top: 0;
+  width: 100%;
+  font-size: 28px;
+
+  font-family:arial ;
+  font-weight: bolder;
+
+
+
+}
+a
+{
+  color: white;
+
 }

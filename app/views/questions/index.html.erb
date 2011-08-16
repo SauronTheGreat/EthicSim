@@ -1,5 +1,15 @@
+<%= content_for(:header_section) do %>
+        <p>Listing Questions</p>
+  <% end %>
+
+
+
+
 <% if @questions.nil? %>
-  <h3>No questions Added</h3>
+  <%= content_for(:header_section) do %>
+		  <p>No Questions Added yet !</p>
+	<% end %>
+
   <%= link_to 'Add a question', :controller => :questions, :action => 'selection_for_question', :new_questionnaire_id=>params[:questionnaire_id] %>
 <% else %>
 

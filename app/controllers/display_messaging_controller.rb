@@ -17,6 +17,15 @@ class DisplayMessagingController < ApplicationController
 	  @message=FacilitatorInput.find(:first, :conditions => ['student_group_id = ? and location = ?', @student_group.id, "instr_closing"])
 	end
 
+	@next_call=params[:questionnaire]
+
+	if @student_group.pre_questionnaire_id.nil? and @next_call=="PreQuestionnaire"
+
+	  @next_call="Quiz"
+	  end
+
+
+
 	if (!@message.nil?)
 	  @message=@message.body
 	end

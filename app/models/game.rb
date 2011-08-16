@@ -4,6 +4,8 @@ class Game < ActiveRecord::Base
 
   validates_presence_of :student_group_id
   validates_numericality_of :student_group_id, :message => "Student group should be a integer"
+  validates_presence_of :name
+  validates_uniqueness_of :name
 
 
 end

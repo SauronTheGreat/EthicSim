@@ -1,4 +1,6 @@
-<h1>Editing question</h1>
+<%= content_for(:header_section) do %>
+<P>Edit <%= @question.statement %></p>
+  <% end %>
 
 <%= render 'form' %>
 

@@ -1,4 +1,15 @@
 <div id="instruction_container">
+  <% if @welcome_message.blank? %>
+	<h2>Welcome Student</h2>
+	<% else %>
   <%= simple_format(@welcome_message) %>
-  <%= link_to "proceed >>> ", messaging_display_path(:questionnaire=>"PreQuestionnaire", :sgid=>@student_group.id), :class=>'large_button' %>
+	<% end %>
+  <% if !@student_group.pre_questionnaire_id.nil? %>
+	<%= link_to "proceed >>> ", messaging_display_path(:questionnaire=>"PreQuestionnaire", :sgid=>@student_group.id), :class=>'large_button' %>
+  <% else %>
+	<%= link_to "proceed >>> ", messaging_display_path(:questionnaire=>"Quiz", :sgid=>@student_group.id), :class=>'large_button' %>
+
+  <% end %>
+
+
 </div>

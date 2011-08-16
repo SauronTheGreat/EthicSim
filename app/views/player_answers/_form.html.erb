@@ -1,18 +1,19 @@
 <% if params[:questionnaire]=="Quiz" %>
   <script type="text/javascript">
 	$(document).ready(function() {
-	  var i = 0;
-
+	 <% if !@student_group_setting.nil? %>
+	  var i = "<%=@student_group_setting.time_value %>";
+	  <%	else %>
+			  var i = 30;
+	<% end %>
 	  var h = setInterval(timer_update, 1000);
 
 	  function timer_update() {
-		$("#UpdatedClock").text("Time " + i++);
-	  <% if !@student_group_setting.nil? %>
+		$("#UpdatedClock").text("Time " + i--);
 
-		var end = "<%=@student_group_setting.time_value %>";
-	  <%	else %>
-		var end = 30;
-	  <% end %>
+
+		var end = 0;
+
 
 		if (i == end) {
 		  //alert("Redirecting.vgddv..!")  ;
@@ -35,10 +36,11 @@
 
   <% @question=Question.find(TempQuestion.first.question_id) %>
   <p style="text-align: left;"><b><%= @question.statement %></b></p>
-  <%= f.hidden_field :player_id, :value=>Player.find_by_user_id(current_user.id).id %>
+  <%= f.hidden_field :player_id, :value=>@player.id %>
 
   <%= f.hidden_field :answer_after_self_scoring, :value=>0 %>
   <%= f.hidden_field :question_id, :value=>@question.id %>
+   <%= f.hidden_field :answer_type, :value=>params[:questionnaire] %>
 
 
 

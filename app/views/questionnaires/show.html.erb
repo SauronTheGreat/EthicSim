@@ -1,9 +1,10 @@
+
+<%= content_for(:header_section) do %>
+  <p> Questionnaire <%= @questionnaire %></p>
+<% end %>
+
 <p id="notice"><%= flash[:notice] %></p>
 
-<p>
-  <b>Name:</b>
-  <%= @questionnaire.name %>
-</p>
 
 <p>
   <b>Facilitator:</b>

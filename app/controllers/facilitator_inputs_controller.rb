@@ -26,6 +26,20 @@ class FacilitatorInputsController < ApplicationController
   def new
 	@facilitator_input = FacilitatorInput.new
 
+	if(params[:location]=="welcome_student")
+	  @title="Welcome Message"
+	elsif params[:location]=="instr_pre_quiz"
+	  @title="Pre Quiz Message"
+	elsif params[:location]=="instr_post_quiz"
+	  @title="Post Quiz Message"
+	elsif params[:location]=="instr_quiz"
+	  @title="Quiz Message"
+elsif params[:location]=="instr_closing"
+	  @title="Closing Message"
+
+
+	end
+
 	respond_to do |format|
 	  format.html # new.html.erb
 	  format.xml { render :xml => @facilitator_input }

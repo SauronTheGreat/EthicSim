@@ -2,7 +2,7 @@
 
 <p>
   <b>Client:</b>
-  <%= @facilitator_group.client_id %>
+  <%= Client.find(@facilitator_group.client_id).name %>
 </p>
 
 <p>
@@ -32,7 +32,7 @@
 
 <%= link_to 'Edit', edit_facilitator_group_path(@facilitator_group) %> |
 <% if current_user.admin %>
-  <%= link_to 'Back to clients', :controller => :clients, :action => 'index' %>|
+  <%= link_to ' Client List', :controller => :clients, :action => 'index' %>|
 <% else %>
   <%= link_to 'Back to Index', facilitator_groups_path %>|
 <% end %>

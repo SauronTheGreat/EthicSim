@@ -8,6 +8,9 @@ Simulation::Application.routes.draw do
   match 'messaging_modes'=>'display_messaging#show_modes'
   match 'messaging_display'=>'display_messaging#show_messages'
   match "confirm_settings"=>'student_groups#confirm_game_creation'
+  match "download_data"=>'student_groups#download_data'
+  match "add_answer"=>'questions#add_answer'
+
 
 
   resources :facilitator_inputs

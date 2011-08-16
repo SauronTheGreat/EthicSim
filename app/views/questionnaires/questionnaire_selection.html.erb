@@ -1,7 +1,12 @@
+<%= content_for(:header_section) do %>
+  <p> Select Questionnaire</p>
+<% end %>
+
+
 <% if @questionnaires.count ==0 %>
   <h2>No Questionnaire created yet !!</h2>
   <p>
-	You will first have to create some questionnaires and only then you can assing that questionnaire to the student
+	You will first have to create some questionnaires and only then you can assign that questionnaire to the student
 	group !!
   </p>
   <p>

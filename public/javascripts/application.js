@@ -6,9 +6,11 @@
  * To change this template use File | Settings | File Templates.
  */
 
-jQuery.preloadImages = function() {
-  for (var i = 0; i < arguments.length; i++) {
-	jQuery("<img>").attr("src", arguments[i]);
-  }
+jQuery.preloadImages = function()
+{
+	for(var i = 0; i<arguments.length; i++)
+	{
+		jQuery("<img>").attr("src", arguments[i]);
+	}
 }
 

@@ -10,13 +10,28 @@
 		<td>
 		  <!--here was the actual code-->
 
-		  <b>Listing Games</b>
-		  <ul>
-			<% @games.each do |game| %>
-
-			  <li><%= link_to "#{game.name}", landing_page_path(:active_game=>game.id) %></li>
-
+		  <% if @games.blank? and @games_played.blank? %>
+			<h2> No games have been assigned yet</h2>
+			<%= link_to destroy_user_session_path, :method => 'delete' do %>
+			  <img class="rollover" id="logout_button" src='/images/menu/logout_off.png' style="width:90px;height:40px;" title="Log Out">
 			<% end %>
+		  <% elsif @games.blank? %>
+			<h2>Games played By you:</h2>
+			<ul>
+			  <% @games_played.each do |game| %>
+				<li><%= game.name %></li>
+			  <% end %>
+			</ul>
+		  <% else %>
+			<b>Listing Games</b>
+			<ul>
+			  <% @games.each do |game| %>
+
+				<li><%= link_to "#{game.name}", landing_page_path(:active_game=>game.id) %></li>
+
+			  <% end %>
+		  <% end %>
+
 		  </ul>
 
 		  <!--end of code-->
@@ -45,9 +60,9 @@
 <% elsif current_user.admin %>
   <!--this is admin view-->
   <!--<%= link_to "Add User", new_user_registration_path %>-->
-  <!--<%= link_to "Add Client", new_client_path %>-->
-  <%= link_to "Add A facilitator Group", new_facilitator_group_path %> <br>
-  <%= link_to "View all facilitator Groups", facilitator_groups_path %> <br>
+  <%= link_to "Add Client", new_client_path %><br>
+  <%= link_to "Add a Facilitator Group", new_facilitator_group_path %> <br>
+  <%= link_to "View all Facilitator Groups", facilitator_groups_path %> <br>
 
 
 <% end %>

@@ -1,0 +1,16 @@
+<%= content_for(:header_section) do %>
+<P>Answer for <%= @question.statement %></p>
+  <% end %>
+
+
+
+<%= form_for @question do |f| %>
+
+  <% f.hidden_field :statement, :value=>@question.statement %>
+  <% f.hidden_field :type_id, :value=>@question.type_id %>
+
+  <%= f.select :answer, @question.options.collect { |option| [option.name, option.option_number] } %>
+  <%= f.submit "Create Answer" %>
+
+<% end %>
+

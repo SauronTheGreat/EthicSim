@@ -10,70 +10,116 @@
 
   <script type="text/javascript">
 
-	/* IMAGE ROLLOVER SCRIPT */
+      /* IMAGE ROLLOVER SCRIPT */
 
-	// Preload the images for speed
-	<% if current_user.educator%>
-	$.preloadImages('/images/menu/home_icon_on.png');
-	$.preloadImages('/images/menu/design_icon_on.png');
-	$.preloadImages('/images/menu/import_icon_on.png');
-	$.preloadImages('/images/menu/group_icon_on.png');
-	<% end %>
+      // Preload the images for speed
+      <% if current_user.educator%>
+      $.preloadImages('/images/menu/home_icon_on.png');
+      $.preloadImages('/images/menu/design_icon_on.png');
+      $.preloadImages('/images/menu/import_on.png');
+      $.preloadImages('/images/menu/group_icon_on.png');
+      $.preloadImages('/images/menu/next_on.png');
+      <% end %>
 
-	// Set up rollover
-	$(
-			function() {
-			  $("img.rollover").tooltip({
-				delay: 0,
-				showURL:false
-			  });
-			  $("img.rollover").hover(
-					  function() {
-						this.src = this.src.replace("_off", "_on");
-					  },
-					  function() {
-						this.src = this.src.replace("_on", "_off");
-					  }
-			  );
-			}
-	)
+      // Set up rollover
+      $(
+              function() {
+                  $("img.rollover").tooltip({
+                      delay: 0,
+                      showURL:false
+                  });
+                  $("img.rollover").hover(
+                          function() {
+                              this.src = this.src.replace("_off", "_on");
+                          },
+                          function() {
+                              this.src = this.src.replace("_on", "_off");
+                          }
+                  );
+              }
+      )
 
   </script>
+
+  <!--[if IE 6]>
+  <style type="text/css">
+      html {
+          overflow-y: hidden;
+      }
+
+      body {
+          overflow-y: auto;
+      }
+
+      #page-background {
+          position: absolute;
+          z-index: -1;
+      }
+
+      #content {
+          position: static;
+          padding: 10px;
+      }
+  </style>
+  <![endif]-->
+
 
   <%= yield(:head) %>
 </head>
 <body>
-<img src='/images/menu/homer-brain.jpg' style="position:absolute;right:0;bottom:20px"/>
 
-<% if current_user.admin || current_user.educator %>
-  <div class="left_bar">
-	<table style="width: 100%; height: 100%">
-	  <tr style="height: 90%">
-		<td style="vertical-align: top;">
-		  <%= render 'layouts/partials/left_bar_menu' %>
-		  <%= yield(:left_bar) %>
-		</td>
-	  </tr>
-	  <tr style="vertical-align: bottom;height: 10%">
-		<td style="vertical-align: bottom;">
-		  <%= link_to destroy_user_session_path, :method => 'delete' do %>
-			<img class="rollover" id="logout_button" src='/images/menu/logout_off.png' style="width:90px;height:40px;" title="Log Out">
-		  <% end %>
-		</td>
-	  </tr>
-	</table>
+<div id="page-background"><img src="/images/background.jpg" width="100%" height="100%" alt="Background"></div>
 
-  </div>
+<div class="empty_full_screen">
+  <table style="width: 100%; height: 100%">
+    <tr style="height:10%">
+      <td style="width:5%;background-image:url('/images/header.jpg'); "></td>
+      <td style="width:10%;background-image:url('/images/header.jpg');">
+        <table style="width:100%;height: 100%;">
+          <tr style="height: 80%; ">
+            <td></td>
+          </tr>
+          <tr style="height: 80%; ">
+            <!--<td style="background-image:url('/images/orange_curtain.jpg');border: none;"></td>-->
+          </tr>
+        </table>
+      </td>
+      <td style="width:55%;background-image:url('/images/header.jpg');"></td>
+      <td style="padding-right: 2%;width:28%;text-align: right;vertical-align: middle;background: url('/images/header-notch.jpg') no-repeat;">
+        <img src="/images/ethiq-logo.png"/>
+      </td>
+      <td style="width:2%;background-image:url('/images/header.jpg');"></td>
+    </tr>
+    <tr style="height: 90%">
+      <td style="width:5%;background: transparent"></td>
+      <td style="width:10%;background-image:url('/images/header.jpg');">
+        <table style="width: 100%; height: 100%">
+          <tr style="height: 90%">
+            <td style="vertical-align: top;">
+              <%= render 'layouts/partials/left_bar_menu' %>
+              <%= yield(:left_bar) %>
+            </td>
+          </tr>
+          <tr style="vertical-align: bottom;height: 10%">
+            <td style="vertical-align: bottom;">
+              <%= link_to destroy_user_session_path, :method => 'delete' do %>
+                  <img class="rollover" id="logout_button" src='/images/menu/logout_off.png' style="width:90px;height:40px;" title="Log Out">
+              <% end %>
+            </td>
+          </tr>
+        </table>
+      </td>
+      <td colspan="3" style="width:80%;">
+        <% flash.each do |name, msg| %>
+            <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        <% end %>
+        <%= content_tag :h1, yield(:title) if show_title? %>
+        <%= yield(:instructions) %>
+        <%= yield %>
+      </td>
+    </tr>
+  </table>
 
-<% end %>
-<div class="left_bar_remainder_empty">
-
-  <% flash.each do |name, msg| %>
-	<%= content_tag :div, msg, :id => "flash_#{name}" %>
-  <% end %>
-  <%= content_tag :h1, yield(:title) if show_title? %>
-  <%= yield(:instructions) %>
-  <%= yield %>
 
 </div>
 </body>

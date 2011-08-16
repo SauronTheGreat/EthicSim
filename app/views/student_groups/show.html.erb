@@ -1,3 +1,8 @@
+<%= content_for(:header_section) do %>
+        <p><%= @student_group.name %></p>
+  <% end %>
+
+
 <p id="notice"><%= flash[:notice] %></p>
 <p><%= params[:notice] %></p>
 
@@ -34,28 +39,37 @@
 	</td>
 
 
+	<% if @student_group.pre_questionnaire_id.nil? %>
+	  <h3 style="color: #3333ff">You have not assigned a pre survey</h3>
+	<% end %>
+
+
+	<% if @student_group.post_questionnaire_id.nil? %>
+	  <h3 style="color: #3333ff">You have not assigned a post survey</h3>
+	<% end %>
+
+
+
 	<% if Game.find_by_student_group_id(@student_group.id).nil? %>
 
 
 	  <% @student_group_users=StudentGroupUser.find_all_by_student_group_id(@student_group.id) %>
 	  <% if @student_group_users.blank? %>
 		<h2 style="color: red">Please assign students</h2>
-	  <% elsif @student_group.pre_questionnaire_id.nil? %>
-		<h2 style="color: red">Please assign Pre Questionnaire </h2>
 	  <% elsif @student_group.quiz_id.nil? %>
 		<h2 style="color: red">Please assign Quiz</h2>
-	  <% elsif @student_group.post_questionnaire_id.nil? %>
-		<h2 style="color: red">Please assign Post Questionnaire Id</h2>
 	  <% else %>
 		<td>
-		  <%= link_to link_to image_tag("proceed.png", :style=>"width:160px;height:160px;", :class => "rollover", :title => "Proceed for Game Creation "), confirm_settings_path(:sgid=>@student_group.id) %>
+		  <%= link_to link_to image_tag("proceed.png", :style=>"width:160px;height:160px;", :class => "rollover", :title => "Proceed to Game Creation "), confirm_settings_path(:sgid=>@student_group.id) %>
 		</td>
 	  <% end %>
 	<% else %>
 	  <h2 style="color: green;">Game already created</h2>
+	  <h2><%=link_to "DownLoad Data",download_data_path(:sgid=>@student_group.id) %></h2>
 	<% end %>
 
   </tr>
+
 
 </table>
 <br/>

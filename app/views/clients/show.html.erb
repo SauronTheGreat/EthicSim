@@ -10,6 +10,10 @@
   <%= @client.type_of_client %>
 </p>
 
-
-<%= link_to 'Edit', edit_client_path(@client) %> |
-<%= link_to 'Back', clients_path %>
+<table>
+  <tr>
+		<td class="blacky"><%= link_to image_tag('/images/menu/settings_icon_off.png', :style=>"width:50px;height:50px;", :class=>'rollover', :title=>'Manage'), @client %></td>
+		<td class="blacky"><%= link_to image_tag('/images/menu/rename_icon_off.png', :style=>"width:40px;height:40px;", :class=>'rollover', :title=>'Rename'), edit_client_path(@client) %></td>
+		<td class="blacky"><%= link_to image_tag('/images/menu/delete-icon_off.png', :style=>"width:45px;height:45px;", :class=>'rollover', :title=>'Delete'), @client, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+  </table>

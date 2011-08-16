@@ -33,7 +33,7 @@
 	  <p>
 		Time for which each question comes:
 		<% if  !StudentGroupSetting.find_by_student_group_id(@student_group.id).nil? %>
-		  <b><%= StudentGroupSetting.find_by_student_group_id(@student_group.id).time_value %></b>
+		  <b><%= StudentGroupSetting.find_by_student_group_id(@student_group.id).time_value %> Seconds</b>
 		<% else %>
 		  <b>No Time Assigned </b>(The default is 30 seconds)
 		<% end %>
@@ -57,7 +57,7 @@
 
 	  <p>
 		Quiz Assigned:
-		<% if @student_group.pre_questionnaire_id.nil? %>
+		<% if @student_group.quiz_id.nil? %>
 		  <b>No Quiz Assigned</b>
 		<% else %>
 		  <b><%= Questionnaire.find(@student_group.quiz_id).name %></b>

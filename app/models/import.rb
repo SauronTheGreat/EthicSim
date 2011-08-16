@@ -2,7 +2,7 @@ class Import< ActiveRecord::Base
 
   def self.save(upload)
 	name = upload['datafile'].original_filename
-	directory = "public/data"
+	directory = "#{Rails.root}/public/data"
 # create the file path
 	path = File.join(directory, name)
 # write the file

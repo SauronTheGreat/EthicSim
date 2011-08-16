@@ -58,6 +58,9 @@ class QuestionsController < ApplicationController
   # POST /questions.xml
   def create
 	@question = Question.new(params[:question])
+	 if @question.type.name=="Matrix Type Question"
+	   @question.answer=100
+	 end
 	@questionnaire = Questionnaire.find(params[:questionnaire_id])
 
 	respond_to do |format|
@@ -89,7 +92,7 @@ class QuestionsController < ApplicationController
 		  format.html { redirect_to new_option_path(:question_id=>@question.id, :notice => 'Question was successfully created.') }
 		end
 	  else
-		format.html { render :action => "new" }
+		format.html { redirect_to :action => "new" ,:questionnaire_id=>@questionnaire.id}
 		format.xml { render :xml => @question.errors, :status => :unprocessable_entity }
 	  end
 	end
@@ -99,10 +102,13 @@ class QuestionsController < ApplicationController
   # PUT /questions/1.xml
   def update
 	@question = Question.find(params[:id])
+	@questionnaire_question=QuestionnaireQuestion.find_by_question_id(@question.id)
+	@questionnaire=Questionnaire.find(@questionnaire_question.questionnaire_id)
 
 	respond_to do |format|
 	  if @question.update_attributes(params[:question])
-		format.html { redirect_to(@question, :notice => 'Question was successfully updated.') }
+	#	format.html { redirect_to(@question, :notice => 'Question was successfully updated.') }
+		format.html { redirect_to new_question_path(:questionnaire_id=>@questionnaire.id), :notice => 'Answer was successfully Saved.' }
 		format.xml { head :ok }
 	  else
 		format.html { render :action => "edit" }
@@ -188,5 +194,14 @@ class QuestionsController < ApplicationController
 
 	end
   end
+
+  def add_answer
+	@question=Question.find(params[:question_id])
+
+
+  end
+
+
 end
+
 

@@ -7,6 +7,16 @@
 	<% @questions.each_with_index do |question, index| %>
 	  <tr>
 		<td style="text-align: left;"><%= @position=index+1 %>. <%= h question.statement %></td>
+		<% if question.type.name != "Open Ended Question" and question.type.name != "Matrix Type Question" %>
+		<% if question.answer.nil? %>
+		<td> <%= link_to "(Add Answer)",add_answer_path(:question_id=>question.id)  %></td>
+		  <% else %>
+		    <td> <%= link_to "(Modify Answer)",add_answer_path(:question_id=>question.id)  %></td>
+		  <% end %>
+		  <% else %>
+		<td></td>
+		  <% end %>
+
 		<td style="width:20%"></td>
 		<td><%= h question.type.name %> </td>
 	  </tr>

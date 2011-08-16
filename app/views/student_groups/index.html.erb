@@ -1,6 +1,10 @@
+<%= content_for(:header_section) do %>
+        <p>Your Groups</p>
+  <% end %>
+
 <table width="85%" style="margin: auto">
   <tr>
-	<td><h1>Your Groups</h1></td>
+	<td></td>
 	<td width="10%"></td>
 	<td colspan="3"><%= link_to image_tag('/images/add_user_off.png', :style=>"width:50px;height:50px;", :class=>'rollover', :title=>'New Group'), new_student_group_path %></td>
   </tr>

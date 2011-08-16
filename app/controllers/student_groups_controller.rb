@@ -86,5 +86,65 @@ class StudentGroupsController < ApplicationController
 	@student_group_users=@student_group.student_group_users
 
   end
+
+  require "spreadsheet"
+
+  def download_data
+	@student_group=StudentGroup.find(params[:sgid])
+	@game=Game.find_by_student_group_id(@student_group.id)
+	@players=@game.players
+
+
+	book = Spreadsheet::Workbook.new
+	sheet1 = book.create_worksheet
+	index=1
+
+	sheet1[0, 0]="Player Name"
+	sheet1[0, 1]="Question"
+	sheet1[0, 2]="Answer Given"
+	sheet1[0, 3]="Correct Answer"
+	sheet1[0, 4]="Cheated"
+
+
+	@players.each do |player|
+
+	  @player_answers=player.player_answers
+	  format_cheated = Spreadsheet::Format.new :color => :red
+	  format_clean=Spreadsheet::Format.new :color=>:green
+
+	  @player_answers.each do |answer|
+		if (answer.answer_type=="Quiz")
+		  if answer.cheated
+			sheet1.row(index).default_format=format_cheated
+		  else
+			sheet1.row(index).default_format=format_clean
+
+		  end
+
+		  sheet1[index, 0]=User.find(Player.find(answer.player_id).user_id).full_name
+		  sheet1[index, 1]=Question.find(answer.question_id).statement
+		  sheet1[index, 2]=answer.answer
+		  sheet1[index, 3]=Question.find(answer.question_id).answer
+		  if answer.cheated
+			sheet1[index, 4]="YES"
+		  else
+			sheet1[index, 4]="NO"
+
+
+		  end
+
+
+		  index=index+1
+		end
+
+
+	  end
+
+	end
+	book.write "#{Rails.root}/public/download.xls"
+	send_file ("#{Rails.root}/public/download.xls")
+
+
+  end
 end
 
