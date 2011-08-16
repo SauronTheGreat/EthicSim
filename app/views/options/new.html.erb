@@ -1,3 +1,8 @@
+<%= content_for(:header_section) do %>
+  <p>Options</p>
+
+  <% end %>
+
 <%= render 'form' %>
 
 <%= link_to "Done ", new_question_path(:questionnaire_id=>@questionnaire_id) %>

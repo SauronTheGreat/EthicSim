@@ -1,6 +1,10 @@
 <%= content_for(:header_section) do %>
   <p> Quizzes and Surveys</p>
   <% end %>
+<% if @surveys.blank? %>
+  <h4>No Questionnaires added yet !</h4>
+    <h4>Click here to add a new Questionnaire</h4>
+  <% end %>
 
 <table width="85%" style="margin: auto">
   <tr>

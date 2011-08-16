@@ -1,6 +1,11 @@
 <%= content_for(:header_section) do %>
         <p>Your Groups</p>
   <% end %>
+<% if @student_groups.blank? %>
+  <h4>No Students Groups Added yet !</h4>
+  <h4>Click here to add a new Student group</h4>
+
+  <% end %>
 
 <table width="85%" style="margin: auto">
   <tr>

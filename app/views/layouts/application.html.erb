@@ -114,12 +114,19 @@
             <%= content_tag :div, msg, :id => "flash_#{name}" %>
         <% end %>
         <%= content_tag :h1, yield(:title) if show_title? %>
+
+
         <div class="free_floater">
 		  <div class="header_section">
 			<%= yield(:header_section) %>
 
 
 		  </div>
+
+
+
+
+
 		  <br>
 		  <br>
 		  <br>
@@ -129,7 +136,14 @@
 
           <%= yield %>
         </div>
+
+
       </td>
+<td>
+  <div class="left_bar_remainder_empty">
+		  <%= yield(:small_side) %>
+	</div>
+</td>
     </tr>
   </table>
 

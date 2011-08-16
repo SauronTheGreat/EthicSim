@@ -6,6 +6,7 @@
 
 <%= form_for @question do |f| %>
 
+  <p>Select an answer from drop down below</p>
   <% f.hidden_field :statement, :value=>@question.statement %>
   <% f.hidden_field :type_id, :value=>@question.type_id %>
 
